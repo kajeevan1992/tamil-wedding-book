@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node src/index.js",
-    "start": "node src/index.js"
+    "dev": "node src/server.cjs",
+    "start": "node src/server.cjs"
   },
   "dependencies": {
     "express": "latest"
