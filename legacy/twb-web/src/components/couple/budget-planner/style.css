@@ -1,0 +1,12 @@
+.bp-header {
+    padding-top: 1rem;
+  }
+  .bp-header .header-logo {
+    height: 30px;
+  }
+  .bp-header h2 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-top: 2px;
+    margin-bottom: 10px;
+  }

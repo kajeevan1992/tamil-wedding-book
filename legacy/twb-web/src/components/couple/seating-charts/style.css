@@ -1,0 +1,956 @@
+.sc-window {
+  height: 600px;
+  position: relative;
+}
+
+.sc-window .resize-handle {
+  position: absolute;
+  bottom: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: ns-resize;
+  width: 50px;
+  height: 11px;
+  background-color: #d9d9d9;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  text-align: center;
+  line-height: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 300;
+}
+
+.resize-handle span {
+  font-size: 20px;
+  color: #ed2129;
+}
+
+.sc-header {
+  width: 400px;
+  margin: auto;
+  text-align: center;
+  padding-top: 3rem;
+}
+.sc-header .header-logo {
+  height: 30px;
+}
+.sc-header h2 {
+  font-size: 25px;
+  font-weight: 800;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.sc-sidebar {
+  width: 300px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  /* z-index: 1; */
+  box-shadow: 1px -3px 10px -3px #717171;
+  transition: 0.5s;
+}
+
+.sc-sidebar-btn {
+  position: absolute;
+  z-index: 1;
+  width: 85px;
+  font-size: 13px;
+}
+
+.sc-sidebar-btn:hover {
+  color: #ec2128 !important;
+}
+
+.sc-sidebar-btn.visible {
+  right: 5px;
+  top: 5px;
+}
+
+.sc-sidebar-btn.in-visible {
+  right: -93px;
+  top: 5px;
+}
+
+.sc-guest {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  cursor: pointer;
+  gap: 11px;
+}
+
+.sc-guest small {
+  font-size: 15px;
+}
+
+.sc-table-chair .sc-guest {
+  display: block;
+}
+
+.sc-table-chair .sc-guest small {
+  font-size: 8px;
+  border: 1px solid #d9d9d9;
+  padding: 1px;
+  margin-top: -18px;
+  background-color: #ffffff;
+  position: relative;
+
+  width: 38px;
+  height: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sc-guest.dragging {
+  /* background: #eb2327;
+    box-shadow: 0 0 0 0 #eb2327; */
+  border-radius: 100%;
+  opacity: 0.5;
+}
+
+.sc-guest.dragging > small {
+  display: none;
+}
+
+.sc-guest .bi {
+  font-size: 28px;
+  color: #ec2128;
+  display: inline-block;
+}
+
+.sc-tc-main {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+}
+
+.sc-content {
+  position: relative;
+  margin-left: 300px;
+  height: 100%;
+  transition: margin-left 0.5s;
+  background-image: linear-gradient(rgb(235, 234, 234) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(235, 234, 234) 1px, transparent 1px);
+  background-size: 2rem 2rem;
+  /* cursor: grab; */
+  /* cursor: -webkit-grab; */
+}
+
+.sc-list-view .sc-guest{
+  margin-bottom: 5px;
+}
+
+/* .sc-content:active {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+} */
+
+.sc-content .sc-tools {
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  width: 36px;
+  z-index: 1;
+}
+
+.sc-content .sc-tools button:hover {
+  color: #ec2128 !important;
+}
+
+.sc-content .events {
+  position: absolute;
+  /* right: 49px; when action buttons are visible */ 
+  right: 20px;
+  top: 8px;
+  z-index: 1;
+}
+
+.sc-content .react-transform-wrapper {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 150px;
+}
+
+.sc-table {
+  position: fixed !important;
+  cursor: move;
+  background-color: #ffffff;
+  border: 1px solid #726d6c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sc-one-sided-table {
+  height: 70px;
+  position: relative;
+}
+
+.sc-one-sided-table-top-side {
+  position: absolute;
+  left: 0;
+  top: -30px;
+  width: inherit;
+  height: 42px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.sc-two-sided-table {
+  height: 70px;
+  position: relative;
+}
+
+.sc-two-sided-table-top-side {
+  position: absolute;
+  left: 0;
+  top: -30px;
+  width: inherit;
+  height: 42px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.sc-two-sided-table-bottom-side {
+  position: absolute;
+  left: 0;
+  bottom: -35px;
+  width: inherit;
+  height: 42px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.sc-four-sided-table {
+  height: 70px;
+  position: relative;
+}
+
+.sc-four-sided-table-left-side {
+  position: absolute;
+  left: -30px;
+  top: 0;
+  width: 42px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.sc-four-sided-table-top-side {
+  position: absolute;
+  left: 0;
+  top: -30px;
+  width: inherit;
+  height: 42px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.sc-four-sided-table-right-side {
+  position: absolute;
+  right: -30px;
+  top: 0;
+  width: 42px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.sc-four-sided-table-bottom-side {
+  position: absolute;
+  left: 0;
+  bottom: -35px;
+  width: inherit;
+  height: 42px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.sc-rounded-table {
+  position: relative;
+  border-radius: 100%;
+}
+
+.sc-table-chair {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-color: #d9d9d9;
+  border: 1px solid #726d6c;
+  text-align: center;
+}
+
+.sc-table-chair .sc-guest .bi {
+  font-size: 40px;
+  margin: -1px 0 0 -1px;
+}
+
+.sc-table-chair .sc-guest small {
+  display: block;
+}
+
+.sc-table-chair.chair-highlighting {
+  border: 2px solid #ec2128;
+  animation: guest-dragging 1s infinite;
+}
+
+.sc-guests-wrapper {
+  position: relative;
+  height: 345px;
+  overflow-y: scroll;
+}
+
+.sc-guests-wrapper {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.sc-guests-wrapper::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
+.sc-drop-guest-area {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgb(236 33 40 / 20%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ed2129;
+  font-weight: 500;
+  height: 100%;
+}
+
+.table-mid-content {
+  /* line-height: 15px; */
+}
+
+@keyframes guest-dragging {
+  0% {
+    /* transform: scale(0.95); */
+    box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7);
+  }
+
+  70% {
+    /* transform: scale(1); */
+    box-shadow: 0 0 0 10px rgba(255, 82, 82, 0);
+  }
+
+  100% {
+    /* transform: scale(0.95); */
+    box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
+  }
+}
+
+/* ? 4 guests rounded table */
+.sc-rounded-table.chairs-count-4 {
+  width: 100px;
+  height: 100px;
+}
+
+.sc-rounded-table.chairs-count-4 .sc-table-chair:nth-child(1) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(270deg) translate(62px) rotate(-270deg);
+}
+
+.sc-rounded-table.chairs-count-4 .sc-table-chair:nth-child(2) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(0deg) translate(56px) rotate(0deg);
+}
+
+.sc-rounded-table.chairs-count-4 .sc-table-chair:nth-child(3) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(90deg) translate(58px) rotate(-90deg);
+}
+
+.sc-rounded-table.chairs-count-4 .sc-table-chair:nth-child(4) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(180deg) translate(60px) rotate(-180deg);
+}
+
+/* ? 4 guests rounded table ends */
+
+/* ? 5 guests rounded table */
+.sc-rounded-table.chairs-count-5 {
+  width: 100px;
+  height: 100px;
+}
+
+.sc-rounded-table.chairs-count-5 .sc-table-chair:nth-child(1) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(270deg) translate(62px) rotate(-270deg);
+}
+
+.sc-rounded-table.chairs-count-5 .sc-table-chair:nth-child(2) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(354deg) translate(50px) rotate(338deg);
+}
+
+.sc-rounded-table.chairs-count-5 .sc-table-chair:nth-child(2) .sc-guest{
+  position: absolute;
+  top: calc(50% - 21.5px);
+  left: calc(50% - -41.5px);
+  transform: rotate(-354deg) translate(-50px) rotate(-338deg);
+}
+
+.sc-rounded-table.chairs-count-5 .sc-table-chair:nth-child(3) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(30deg) translate(70px) rotate(30deg);
+}
+
+.sc-rounded-table.chairs-count-5 .sc-table-chair:nth-child(3) .sc-guest{
+  position: absolute;
+  top: calc(50% - 28.5px);
+  left: calc(50% - -33.5px);
+  transform: rotate(-30deg) translate(-70px) rotate(-30deg);
+}
+
+
+
+.sc-rounded-table.chairs-count-5 .sc-table-chair:nth-child(4) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(90deg) translate(82px) rotate(90deg);
+}
+
+.sc-rounded-table.chairs-count-5 .sc-table-chair:nth-child(4) .sc-guest{
+  position: absolute;
+  top: calc(50% - 63px);
+  left: calc(50% - -18.5px);
+  transform: rotate(-90deg) translate(-82px) rotate(-90deg);
+}
+
+.sc-rounded-table.chairs-count-5 .sc-table-chair:nth-child(5) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(135deg) translate(33px) rotate(65deg);
+}
+
+.sc-rounded-table.chairs-count-5 .sc-table-chair:nth-child(5) .sc-guest{
+  position: absolute;
+  top: calc(50% - 12px);
+  left: calc(50% - -1px);
+  transform: rotate(-135deg) translate(-33px) rotate(-65deg);
+}
+
+/* ? 5 guests rounded table ends */
+
+/* ? 6 guests rounded table */
+.sc-rounded-table.chairs-count-6 {
+  width: 100px;
+  height: 100px;
+}
+
+.sc-rounded-table.chairs-count-6 .sc-table-chair:nth-child(1) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(270deg) translate(60px) rotate(-270deg);
+}
+
+.sc-rounded-table.chairs-count-6 .sc-table-chair:nth-child(2) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(330deg) translate(60px) rotate(-330deg);
+}
+
+.sc-rounded-table.chairs-count-6 .sc-table-chair:nth-child(3) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(30deg) translate(56px) rotate(-30deg);
+}
+
+.sc-rounded-table.chairs-count-6 .sc-table-chair:nth-child(4) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(90deg) translate(56px) rotate(-90deg);
+}
+
+.sc-rounded-table.chairs-count-6 .sc-table-chair:nth-child(5) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(150deg) translate(60px) rotate(-150deg);
+}
+
+.sc-rounded-table.chairs-count-6 .sc-table-chair:nth-child(6) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(210deg) translate(60px) rotate(-210deg);
+}
+
+/* ? 6 guests rounded table ends */
+
+/* ? 7 guests rounded table */
+.sc-rounded-table.chairs-count-7 {
+  width: 120px;
+  height: 120px;
+}
+
+.sc-rounded-table.chairs-count-7 .sc-table-chair:nth-child(1) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(270deg) translate(68px) rotate(-270deg);
+}
+
+.sc-rounded-table.chairs-count-7 .sc-table-chair:nth-child(2) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(321deg) translate(68px) rotate(-321deg);
+}
+
+.sc-rounded-table.chairs-count-7 .sc-table-chair:nth-child(3) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(12deg) translate(68px) rotate(-12deg);
+}
+
+.sc-rounded-table.chairs-count-7 .sc-table-chair:nth-child(4) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(64deg) translate(68px) rotate(-64deg);
+}
+
+.sc-rounded-table.chairs-count-7 .sc-table-chair:nth-child(5) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(115deg) translate(68px) rotate(-115deg);
+}
+
+.sc-rounded-table.chairs-count-7 .sc-table-chair:nth-child(6) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(167deg) translate(68px) rotate(-167deg);
+}
+
+.sc-rounded-table.chairs-count-7 .sc-table-chair:nth-child(7) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(218deg) translate(68px) rotate(-218deg);
+}
+
+/* ? 7 guests rounded table ends */
+
+/* ? 8 guests rounded table */
+.sc-rounded-table.chairs-count-8 {
+  width: 135px;
+  height: 135px;
+}
+
+.sc-rounded-table.chairs-count-8 .sc-table-chair:nth-child(1) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(270deg) translate(76px) rotate(-270deg);
+}
+
+.sc-rounded-table.chairs-count-8 .sc-table-chair:nth-child(2) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(315deg) translate(76px) rotate(-315deg);
+}
+
+.sc-rounded-table.chairs-count-8 .sc-table-chair:nth-child(3) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(0deg) translate(76px) rotate(-0deg);
+}
+
+.sc-rounded-table.chairs-count-8 .sc-table-chair:nth-child(4) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(45deg) translate(76px) rotate(-45deg);
+}
+
+.sc-rounded-table.chairs-count-8 .sc-table-chair:nth-child(5) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(90deg) translate(76px) rotate(-90deg);
+}
+
+.sc-rounded-table.chairs-count-8 .sc-table-chair:nth-child(6) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(135deg) translate(76px) rotate(-135deg);
+}
+
+.sc-rounded-table.chairs-count-8 .sc-table-chair:nth-child(7) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(180deg) translate(76px) rotate(-180deg);
+}
+
+.sc-rounded-table.chairs-count-8 .sc-table-chair:nth-child(8) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(225deg) translate(76px) rotate(-225deg);
+}
+
+/* ? 8 guests rounded table ends */
+
+/* ? 9 guests rounded table */
+.sc-rounded-table.chairs-count-9 {
+  width: 145px;
+  height: 145px;
+}
+
+.sc-rounded-table.chairs-count-9 .sc-table-chair:nth-child(1) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(270deg) translate(84px) rotate(-270deg);
+}
+
+.sc-rounded-table.chairs-count-9 .sc-table-chair:nth-child(2) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(310deg) translate(84px) rotate(-310deg);
+}
+
+.sc-rounded-table.chairs-count-9 .sc-table-chair:nth-child(3) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(350deg) translate(84px) rotate(-350deg);
+}
+
+.sc-rounded-table.chairs-count-9 .sc-table-chair:nth-child(4) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(30deg) translate(84px) rotate(-30deg);
+}
+
+.sc-rounded-table.chairs-count-9 .sc-table-chair:nth-child(5) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(70deg) translate(84px) rotate(-70deg);
+}
+
+.sc-rounded-table.chairs-count-9 .sc-table-chair:nth-child(6) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(110deg) translate(84px) rotate(-110deg);
+}
+
+.sc-rounded-table.chairs-count-9 .sc-table-chair:nth-child(7) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(150deg) translate(84px) rotate(-150deg);
+}
+
+.sc-rounded-table.chairs-count-9 .sc-table-chair:nth-child(8) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(190deg) translate(84px) rotate(-190deg);
+}
+
+.sc-rounded-table.chairs-count-9 .sc-table-chair:nth-child(9) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(230deg) translate(84px) rotate(-230deg);
+}
+
+/* ? 9 guests rounded table ends */
+
+/* ? 10 guests rounded table */
+.sc-rounded-table.chairs-count-10 {
+  width: 165px;
+  height: 165px;
+}
+
+.sc-rounded-table.chairs-count-10 .sc-table-chair:nth-child(1) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(270deg) translate(92px) rotate(-270deg);
+}
+
+.sc-rounded-table.chairs-count-10 .sc-table-chair:nth-child(2) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(306deg) translate(92px) rotate(-306deg);
+}
+
+.sc-rounded-table.chairs-count-10 .sc-table-chair:nth-child(3) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(342deg) translate(92px) rotate(-342deg);
+}
+
+.sc-rounded-table.chairs-count-10 .sc-table-chair:nth-child(4) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(18deg) translate(92px) rotate(-18deg);
+}
+
+.sc-rounded-table.chairs-count-10 .sc-table-chair:nth-child(5) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(54deg) translate(92px) rotate(-54deg);
+}
+
+.sc-rounded-table.chairs-count-10 .sc-table-chair:nth-child(6) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(90deg) translate(92px) rotate(-90deg);
+}
+
+.sc-rounded-table.chairs-count-10 .sc-table-chair:nth-child(7) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(126deg) translate(92px) rotate(-126deg);
+}
+
+.sc-rounded-table.chairs-count-10 .sc-table-chair:nth-child(8) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(162deg) translate(92px) rotate(-162deg);
+}
+
+.sc-rounded-table.chairs-count-10 .sc-table-chair:nth-child(9) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(198deg) translate(92px) rotate(-198deg);
+}
+
+.sc-rounded-table.chairs-count-10 .sc-table-chair:nth-child(10) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(234deg) translate(92px) rotate(-234deg);
+}
+
+/* ? 10 guests rounded table ends */
+
+/* ? 11 guests rounded table */
+.sc-rounded-table.chairs-count-11 {
+  width: 175px;
+  height: 175px;
+}
+
+.sc-rounded-table.chairs-count-11 .sc-table-chair:nth-child(1) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(270deg) translate(100px) rotate(-270deg);
+}
+
+.sc-rounded-table.chairs-count-11 .sc-table-chair:nth-child(2) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(302deg) translate(100px) rotate(-302deg);
+}
+
+.sc-rounded-table.chairs-count-11 .sc-table-chair:nth-child(3) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(335deg) translate(100px) rotate(-335deg);
+}
+
+.sc-rounded-table.chairs-count-11 .sc-table-chair:nth-child(4) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(8deg) translate(100px) rotate(-8deg);
+}
+
+.sc-rounded-table.chairs-count-11 .sc-table-chair:nth-child(5) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(40deg) translate(100px) rotate(-40deg);
+}
+
+.sc-rounded-table.chairs-count-11 .sc-table-chair:nth-child(6) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(73deg) translate(100px) rotate(-73deg);
+}
+
+.sc-rounded-table.chairs-count-11 .sc-table-chair:nth-child(7) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(106deg) translate(100px) rotate(-106deg);
+}
+
+.sc-rounded-table.chairs-count-11 .sc-table-chair:nth-child(8) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(139deg) translate(100px) rotate(-139deg);
+}
+
+.sc-rounded-table.chairs-count-11 .sc-table-chair:nth-child(9) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(171deg) translate(100px) rotate(-171deg);
+}
+
+.sc-rounded-table.chairs-count-11 .sc-table-chair:nth-child(10) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(204deg) translate(100px) rotate(-204deg);
+}
+
+.sc-rounded-table.chairs-count-11 .sc-table-chair:nth-child(11) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(237deg) translate(100px) rotate(-237deg);
+}
+
+/* ? 11 guests rounded table ends */
+
+/* ? 12 guests rounded table */
+.sc-rounded-table.chairs-count-12 {
+  width: 200px;
+  height: 200px;
+}
+
+.sc-rounded-table.chairs-count-12 .sc-table-chair:nth-child(1) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(270deg) translate(110px) rotate(-270deg);
+}
+
+.sc-rounded-table.chairs-count-12 .sc-table-chair:nth-child(2) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(300deg) translate(110px) rotate(-300deg);
+}
+
+.sc-rounded-table.chairs-count-12 .sc-table-chair:nth-child(3) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(330deg) translate(105px) rotate(-330deg);
+}
+
+.sc-rounded-table.chairs-count-12 .sc-table-chair:nth-child(4) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(0deg) translate(105px) rotate(0deg);
+}
+
+.sc-rounded-table.chairs-count-12 .sc-table-chair:nth-child(5) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(30deg) translate(105px) rotate(-30deg);
+}
+
+.sc-rounded-table.chairs-count-12 .sc-table-chair:nth-child(6) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(60deg) translate(105px) rotate(-60deg);
+}
+
+.sc-rounded-table.chairs-count-12 .sc-table-chair:nth-child(7) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(90deg) translate(105px) rotate(-90deg);
+}
+
+.sc-rounded-table.chairs-count-12 .sc-table-chair:nth-child(8) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(120deg) translate(105px) rotate(-120deg);
+}
+
+.sc-rounded-table.chairs-count-12 .sc-table-chair:nth-child(9) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(150deg) translate(110px) rotate(-150deg);
+}
+
+.sc-rounded-table.chairs-count-12 .sc-table-chair:nth-child(10) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(180deg) translate(110px) rotate(-180deg);
+}
+
+.sc-rounded-table.chairs-count-12 .sc-table-chair:nth-child(11) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(210deg) translate(110px) rotate(-210deg);
+}
+
+.sc-rounded-table.chairs-count-12 .sc-table-chair:nth-child(12) {
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 17.5px);
+  transform: rotate(240deg) translate(110px) rotate(-240deg);
+}
+/* ? 12 guests rounded table ends */

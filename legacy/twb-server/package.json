@@ -1,0 +1,51 @@
+{
+  "name": "tamil-wedding-book",
+  "author": "Softgear",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Wedding Planning Tools & Ideas",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect index.js",
+    "migrate": "npx sequelize-cli db:migrate",
+    "migrate:fresh": "npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate",
+    "migrate:drop": "npx sequelize-cli db:migrate:undo:all",
+    "db:seed": "npx sequelize-cli db:seed:all",
+    "db:unseed": "npx sequelize-cli db:seed:undo:all"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "chance": "1.1.11",
+    "cookie-parser": "1.4.6",
+    "cors": "^2.8.5",
+    "cron": "^2.3.0",
+    "crypto-js": "^4.1.1",
+    "date-fns": "2.30.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "geoip-lite": "1.4.7",
+    "helmet": "6.1.5",
+    "html2canvas-proxy": "^1.0.1",
+    "jsonwebtoken": "^9.0.0",
+    "moment": "2.29.4",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.2",
+    "pg": "^8.10.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.31.0",
+    "socket.io": "^4.7.2",
+    "swig-email-templates": "^7.0.0",
+    "validatorjs": "^3.22.1",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "husky": "^8.0.0",
+    "nodemon": "^2.0.22",
+    "sequelize-cli": "^6.6.0"
+  },
+  "engines": {
+    "npm": ">=10.0.0",
+    "node": ">=20.0.0"
+  }
+}

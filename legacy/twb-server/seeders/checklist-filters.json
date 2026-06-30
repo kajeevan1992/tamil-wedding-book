@@ -1,0 +1,34 @@
+{
+    "filters": [
+        {
+            "name": "From 10 to 12 months"
+        },
+        {
+            "name": "From 7 to 9 months"
+        },
+        {
+            "name": "From 4 to 6 months"
+        },
+        {
+            "name": "From 2 to 3 months"
+        },
+        {
+            "name": "The last month"
+        },
+        {
+            "name": "2 weeks"
+        },
+        {
+            "name": "Last week"
+        },
+        {
+            "name": "Last day"
+        },
+        {
+            "name": "Wedding day"
+        },
+        {
+            "name": "After the wedding"
+        }
+    ]
+}

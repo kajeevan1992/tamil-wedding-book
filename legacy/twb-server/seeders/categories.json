@@ -1,0 +1,356 @@
+{
+	"categories": [
+		{
+			"name": "Barn Weddings",
+			"slug": "barn-weddings",
+			"type": "venue",
+			"icon": null,
+			"primary": true
+		},
+		{
+			"name": "Bar, Pub and Restaurant",
+			"slug": "bar-pub-and-restaurant",
+			"type": "venue",
+			"icon": null,
+			"primary": true
+		},
+		{
+			"name": "Castle Weddings",
+			"slug": "castle-weddings",
+			"type": "venue",
+			"icon": null,
+			"primary": true
+		},
+		{
+			"name": "Vineyard and Winery",
+			"slug": "vineyard-and-winery",
+			"type": "venue",
+			"icon": null,
+			"primary": true
+		},
+		{
+			"name": "Hotels",
+			"slug": "hotels",
+			"type": "venue",
+			"icon": null,
+			"primary": true
+		},
+		{
+			"name": "Woodland and Festival Weddings",
+			"slug": "woodland-and-festival-weddings",
+			"type": "venue",
+			"icon": null,
+			"primary": true
+		},
+		{
+			"name": "Marquee and Tent",
+			"slug": "marquee-and-tent",
+			"type": "venue",
+			"icon": null,
+			"primary": true
+		},
+		{
+			"name": "Asian Weddings",
+			"slug": "asian-weddings",
+			"type": "venue",
+			"icon": null,
+			"primary": true
+		},
+		{
+			"name": "Country Weddings",
+			"slug": "country-weddings",
+			"type": "venue",
+			"icon": null,
+			"primary": true
+		},
+		{
+			"name": "Unique and Unusual",
+			"slug": "unique-and-unusual",
+			"type": "venue",
+			"icon": null,
+			"primary": true
+		},
+		{
+			"name": "Historic Weddings",
+			"slug": "historic-weddings",
+			"type": "venue",
+			"icon": null,
+			"primary": true
+		},
+		{
+			"name": "City Weddings",
+			"slug": "city-weddings",
+			"type": "venue",
+			"icon": null,
+			"primary": true
+		},
+		{
+			"name": "Sporting",
+			"slug": "sporting",
+			"type": "venue",
+			"icon": null,
+			"primary": true
+		},
+		{
+			"name": "Coastal and Beach Weddings",
+			"slug": "coastal-and-beach-weddings",
+			"type": "venue",
+			"icon": null,
+			"primary": true
+		},
+		{
+			"name": "Stately Home",
+			"slug": "stately-home",
+			"type": "venue",
+			"icon": null,
+			"primary": true
+		},
+		{
+			"name": "Church Weddings",
+			"slug": "church-weddings",
+			"type": "venue",
+			"icon": null,
+			"primary": true
+		},
+		{
+			"name": "Landmark Weddings",
+			"slug": "landmark-weddings",
+			"type": "venue",
+			"icon": null,
+			"primary": true
+		},
+		{
+			"name": "Tipi and Yurt",
+			"slug": "tipi-and-yurt",
+			"type": "venue",
+			"icon": null,
+			"primary": true
+		},
+		{
+			"name": "Photographers",
+			"slug": "photographers",
+			"type": "supplier",
+			"icon": "bi bi-camera",
+			"primary": true,
+			"highlighted": true
+		},
+		{
+			"name": "Videographers",
+			"slug": "videographers",
+			"type": "supplier",
+			"icon": "bi bi-camera-reels",
+			"primary": true
+		},
+		{
+			"name": "Music and DJs",
+			"slug": "music-and-djs",
+			"type": "supplier",
+			"icon": "bi bi-music-note-beamed",
+			"primary": true,
+			"highlighted": true
+		},
+		{
+			"name": "Cars and Travel",
+			"slug": "cars-and-travel",
+			"type": "supplier",
+			"icon": "bi bi-truck",
+			"primary": true,
+			"highlighted": true
+		},
+		{
+			"name": "Stationery",
+			"slug": "stationery",
+			"type": "supplier",
+			"icon": "bi bi-envelope-paper-heart",
+			"primary": true,
+			"highlighted": true
+		},
+		{
+			"name": "Favours",
+			"slug": "favours",
+			"type": "supplier",
+			"icon": "bi bi-gift",
+			"primary": true,
+			"highlighted": true
+		},
+		{
+			"name": "Florists",
+			"slug": "florists",
+			"type": "supplier",
+			"icon": "bi bi-flower1",
+			"primary": true
+		},
+		{
+			"name": "Planners",
+			"slug": "planners",
+			"type": "supplier",
+			"icon": "bi bi-journal-text",
+			"primary": true
+		},
+		{
+			"name": "Honeymoons",
+			"slug": "honeymoons",
+			"type": "supplier",
+			"icon": "bi bi-airplane",
+			"primary": true,
+			"highlighted": true
+		},
+		{
+			"name": "Beauty, Hair & Make Up",
+			"slug": "beauty-hair-Make-up",
+			"type": "supplier",
+			"icon": null,
+			"primary": false
+		},
+		{
+			"name": "Decor Hire and Styling",
+			"slug": "decor-hire-and-styling",
+			"type": "supplier",
+			"icon": null,
+			"primary": false
+		},
+		{
+			"name": "Mobile Bar Services",
+			"slug": "mobile-bar-services",
+			"type": "supplier",
+			"icon": null,
+			"primary": false
+		},
+		{
+			"name": "Something Different",
+			"slug": "something-different",
+			"type": "supplier",
+			"icon": null,
+			"primary": false
+		},
+		{
+			"name": "Bridalwear Shops",
+			"slug": "bridalwear-shops",
+			"type": "supplier",
+			"icon": null,
+			"primary": false,
+			"highlighted": true
+		},
+		{
+			"name": "Entertainment",
+			"slug": "entertainment",
+			"type": "supplier",
+			"icon": null,
+			"primary": false
+		},
+		{
+			"name": "Speechwriting",
+			"slug": "speechwriting",
+			"type": "supplier",
+			"icon": null,
+			"primary": false
+		},
+		{
+			"name": "Cakes",
+			"slug": "cakes",
+			"type": "supplier",
+			"icon": null,
+			"primary": false
+		},
+		{
+			"name": "Catering",
+			"slug": "catering",
+			"type": "supplier",
+			"icon": null,
+			"primary": false,
+			"highlighted": true
+		},
+		{
+			"name": "Marquee & Tipi Hire",
+			"slug": "marquee-and-tipi-hire",
+			"type": "supplier",
+			"icon": null,
+			"primary": false
+		},
+		{
+			"name": "Photo Booth",
+			"slug": "photo-booth",
+			"type": "supplier",
+			"icon": null,
+			"primary": false
+		},
+		{
+			"name": "Celebrants",
+			"slug": "celebrants",
+			"type": "supplier",
+			"icon": null,
+			"primary": false,
+			"highlighted": true
+		},
+		{
+			"name": "Accessories",
+			"slug": "accessories",
+			"type": "supplier",
+			"icon": null,
+			"primary": false
+		},
+		{
+			"name": "Groomswear Shop",
+			"slug": "groomswear-shop",
+			"type": "supplier",
+			"icon": null,
+			"primary": false
+		},
+		{
+			"name": "Wedding Jewellery",
+			"slug": "wedding-jewellery",
+			"type": "supplier",
+			"icon": null,
+			"primary": false
+		},
+		{
+			"name": "Albums and Guest Books",
+			"slug": "albums-and-guest-books",
+			"type": "supplier",
+			"icon": null,
+			"primary": false
+		},
+		{
+			"name": "Destination Wedding Planner",
+			"slug": "destination-wedding-planner",
+			"type": "supplier",
+			"icon": null,
+			"primary": false
+		},
+		{
+			"name": "Fireworks",
+			"slug": "fireworks",
+			"type": "supplier",
+			"icon": null,
+			"primary": false
+		},
+		{
+			"name": "First Dance Choreography",
+			"slug": "first-dance-choreography",
+			"type": "supplier",
+			"icon": null,
+			"primary": false
+		},
+		{
+			"name": "Hen And Stag Party",
+			"slug": "hen-and-stag-party",
+			"type": "supplier",
+			"icon": null,
+			"primary": false
+		},
+		{
+			"name": "Toastmasters",
+			"slug": "toastmasters",
+			"type": "supplier",
+			"icon": null,
+			"primary": false
+		},
+		{
+			"name": "Childcare and Creche",
+			"slug": "childcare-and-creche",
+			"type": "supplier",
+			"icon": null,
+			"primary": false
+		}
+	]
+}

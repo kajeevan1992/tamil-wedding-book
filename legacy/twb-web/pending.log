@@ -1,0 +1,5 @@
+- socket integration and making notificaiton live
+- mark notifications as seen and don't load again (maybe delete also?)
+- verify email flow for vendor and also for non login users
+- encrypt data from server and decrypt on client side to unreadable from network tab
+    - https://stackoverflow.com/questions/54939397/how-to-hide-data-from-network-tab

@@ -1,0 +1,55 @@
+{
+    "categories": [
+        {
+            "name": "Essential"
+        },
+        {
+            "name": "Planning"
+        },
+        {
+            "name": "Legal processes"
+        },
+        {
+            "name": "Ceremony"
+        },
+        {
+            "name": "Reception"
+        },
+        {
+            "name": "Music"
+        },
+        {
+            "name": "Wedding invitations"
+        },
+        {
+            "name": "Wedding favours"
+        },
+        {
+            "name": "Flowers and Decoration"
+        },
+        {
+            "name": "Photography and Video"
+        },
+        {
+            "name": "Transport"
+        },
+        {
+            "name": "Jewellery"
+        },
+        {
+            "name": "Bride accessories"
+        },
+        {
+            "name": "Groom accessories"
+        },
+        {
+            "name": "Health and beauty"
+        },
+        {
+            "name": "Gift list"
+        },
+        {
+            "name": "Other"
+        }
+    ]
+}
