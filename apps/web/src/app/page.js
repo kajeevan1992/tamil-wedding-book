@@ -1,3 +1,5 @@
+import { LegacyClientPage } from '@/components/migration/LegacyClientPage';
+
 export default function Page() {
-  return 'Migration scaffold only.';
+  return <LegacyClientPage route="/" legacyComponent="@views/Home" />;
 }
