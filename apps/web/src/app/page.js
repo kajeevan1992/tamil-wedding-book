@@ -1,5 +1,5 @@
-import { LegacyClientPage } from '@/components/migration/LegacyClientPage';
+import HomePageClient from '@/legacy/components/layout/HomePageClient';
 
 export default function Page() {
-  return <LegacyClientPage route="/" legacyComponent="@views/Home" />;
+  return <HomePageClient />;
 }
