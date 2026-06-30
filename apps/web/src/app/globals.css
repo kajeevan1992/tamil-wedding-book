@@ -1,9 +1,19 @@
+/*
+ * Milestone 2 frontend shell preparation.
+ *
+ * CSS loading strategy:
+ * - Keep this file intentionally minimal until TWB-WEB styles are migrated.
+ * - Legacy global CSS from legacy/twb-web/public/assets/css/base.css should be
+ *   loaded before migrated page/component CSS in a later approved milestone.
+ * - Do not recreate or redesign legacy spacing, colors, fonts, header, footer,
+ *   cards, dropdowns, or responsive behavior here.
+ *
+ * Asset path strategy:
+ * - Preserve legacy /assets/... references when assets are copied later.
+ * - Do not copy the legacy asset tree in Milestone 2.
+ */
 html,
 body {
   margin: 0;
   padding: 0;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
 }
