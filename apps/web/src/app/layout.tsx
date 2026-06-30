@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+import { LegacyLayoutShell } from '@/components/migration/LegacyLayoutShell';
 import './globals.css';
 
 export const metadata = {
@@ -5,10 +7,12 @@ export const metadata = {
   description: 'Tamil Wedding Book migration scaffold'
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <LegacyLayoutShell>{children}</LegacyLayoutShell>
+      </body>
     </html>
   );
 }
