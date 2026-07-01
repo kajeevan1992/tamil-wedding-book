@@ -133,3 +133,91 @@ export const notifications = [
   'You have vendors waiting to be shortlisted.',
   'Complete your wedding website details.',
 ];
+
+export const seatingChartFallbackData = {
+  weddingEvents: [
+    {
+      id: 1,
+      name: 'Wedding',
+      seatingChartWindowHeight: 650,
+      eventGuests: [
+        { id: 1, fullName: 'Arun Kumar' },
+        { id: 2, fullName: 'Priya S' },
+        { id: 3, fullName: 'Meera Raj' },
+        { id: 4, fullName: 'Kavin Thiru' },
+        { id: 5, fullName: 'Nila Raj' },
+        { id: 6, fullName: 'Anjali Kumar' },
+        { id: 7, fullName: 'Suren Nadarajah' },
+        { id: 8, fullName: 'Divya Selvan' },
+      ],
+      eventTables: [
+        {
+          id: 1,
+          name: 'Table 1',
+          type: 'sc-rounded-table',
+          width: 110,
+          height: 110,
+          positionX: 240,
+          positionY: 190,
+          chairs: [
+            { id: '1-chair-1', guestId: 1 },
+            { id: '1-chair-2', guestId: 2 },
+            { id: '1-chair-3', guestId: null },
+            { id: '1-chair-4', guestId: null },
+            { id: '1-chair-5', guestId: null },
+            { id: '1-chair-6', guestId: null },
+          ],
+        },
+        {
+          id: 2,
+          name: 'Table 2',
+          type: 'sc-two-sided-table',
+          width: 180,
+          height: 70,
+          positionX: 520,
+          positionY: 260,
+          chairs: [
+            { id: '2-chair-1', guestId: 3 },
+            { id: '2-chair-2', guestId: null },
+            { id: '2-chair-3', guestId: null },
+            { id: '2-chair-4', guestId: null },
+            { id: '2-chair-5', guestId: null },
+            { id: '2-chair-6', guestId: null },
+          ],
+        },
+      ],
+    },
+    {
+      id: 2,
+      name: 'Reception',
+      seatingChartWindowHeight: 650,
+      eventGuests: [
+        { id: 11, fullName: 'Maya Chandran' },
+        { id: 12, fullName: 'Ravi Siva' },
+        { id: 13, fullName: 'Leela Nathan' },
+        { id: 14, fullName: 'Vikram Raj' },
+      ],
+      eventTables: [
+        {
+          id: 3,
+          name: 'Table 3',
+          type: 'sc-four-sided-table',
+          width: 160,
+          height: 70,
+          positionX: 310,
+          positionY: 230,
+          chairs: [
+            { id: '3-chair-1', guestId: 11 },
+            { id: '3-chair-2', guestId: null },
+            { id: '3-chair-3', guestId: null },
+            { id: '3-chair-4', guestId: null },
+            { id: '3-chair-5', guestId: null },
+            { id: '3-chair-6', guestId: null },
+            { id: '3-chair-7', guestId: null },
+            { id: '3-chair-8', guestId: null },
+          ],
+        },
+      ],
+    },
+  ],
+};

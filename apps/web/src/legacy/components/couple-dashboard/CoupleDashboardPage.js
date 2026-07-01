@@ -10,6 +10,7 @@ import {
 import CoupleChecklistPage from './CoupleChecklistPage';
 import CoupleGuestListPage from './CoupleGuestListPage';
 import CoupleBudgetPlannerPage from './CoupleBudgetPlannerPage';
+import CoupleSeatingChartPage from './CoupleSeatingChartPage';
 
 function DashboardBanner() {
   return (
@@ -59,7 +60,7 @@ function VendorsPage({ search = false }) {
 }
 
 function SeatingChartPage() {
-  return <div className="container-fluid wide-tb-50"><div className="row"><div className="col-md-3"><div className="card"><div className="card-body"><h5>Wedding Events</h5><button className="btn btn-primary btn-sm mb-3">Add Table</button><p className="text-muted">Temporary seating chart frontend only.</p></div></div></div><div className="col-md-9"><div className="card"><div className="card-body text-center" style={{ minHeight: 420 }}><h3>Seating Chart</h3><div className="d-inline-flex rounded-circle border align-items-center justify-content-center mt-5" style={{ width: 180, height: 180 }}>Table 1</div></div></div></div></div></div>;
+  return <CoupleSeatingChartPage />;
 }
 
 function BudgetPlannerPage({ category = false }) {
