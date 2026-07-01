@@ -821,3 +821,45 @@ Expected remaining gaps after 3F-1:
 - `DELETE /api/couple/seating-chart/delete-table/:eventId/:tableId`
 - `POST /api/couple/seating-chart/change-window-height`
 - Guest list/backend sync and logged-in couple/session enforcement remain deferred to a later Level 2 integration milestone.
+
+## 3F-5 couple vendors legacy audit addendum
+
+### 1. Exact legacy couple vendor files used
+- `legacy/twb-web/src/views/dashboard/couple/pages/Vendors.js` is the primary source for `/couple/vendors`, including the `container spacer` layout, `My Suppliers` heading, saved/hired summary buttons, progress area, category cards, cover image fallback and Add Vendor modal trigger.
+- `legacy/twb-web/src/views/dashboard/couple/pages/VendorsFilters.js` is the primary source for `/couple/vendors/search`, including the Return link, Filters column, category/status filtering, selected vendor count, Add Vendor button and filtered card grid.
+- `legacy/twb-web/src/components/couple/vendor/FilteredVendors.js` is the source for saved vendor cards, remove action, category badge, vendor image, vendor name/address, status changes, Add Note and Show Tel. interactions.
+- `legacy/twb-web/src/components/couple/vendor/SearchVendorModal.js` is the source for the Add New Vendor modal, async vendor search shape, Add button and Create and invite vendor branch.
+- `legacy/twb-web/src/components/couple/CreateAndInviteSupplier.js` was inspected as the deferred create/invite modal path.
+- `legacy/twb-web/src/services/CoupleService.js` defines the deferred vendor API shape for `loadSuppliers`, `loadVendorsByCategory`, `storeSupplier`, `searchSupplier`, `createAndInviteVendor`, `changeSelectedVendor` and `removeSelectedVendor`.
+
+### 2. Original UI HTML files used
+- `legacy/original-ui-html/couples-dashboard.html` was inspected for the dashboard supplier-manager tab reference, `supplier-manage` section, vendor-manager navigation and repeated Add supplier areas.
+- `legacy/original-ui-html/planning-vendor-manager.html` was inspected as the public planning vendor-manager reference, but authenticated React source remained higher priority for `/couple/vendors` and `/couple/vendors/search`.
+
+### 3. Parts migrated close to 1:1
+- `/couple/vendors` now follows the legacy `My Suppliers` heading, saved/hired summary buttons, progress bar and category card layout.
+- Category cards preserve the legacy `card img-fluid w-h-100 h-170px`, overlay, icon, category title and Search/Saved button pattern.
+- `/couple/vendors/search` now follows the legacy Return link, Filters sidebar, category/status filters, selected vendor count, Add Vendor button and filtered vendor card grid.
+- Saved vendor cards preserve the legacy image overlay, category badge, supplier name/address, remove button, status selector, Add Note and Show Tel. actions.
+- The Add New Vendor modal preserves the legacy modal title, search field area, Add button placement, result rows and Create and invite vendor affordance.
+
+### 4. Newly created/local-state-only parts
+- All categories, saved vendors, available vendor search rows, status counts and notes are fallback data in React state only.
+- Native `select` and `input` controls are used instead of `react-select`/`AsyncSelect` because backend-loaded options are deferred.
+- Save/unsave, remove, status changes, notes, Show Tel. and modal search are local-only frontend behaviours.
+
+### 5. Original behaviours still missing
+- Real async vendor search, pagination and validation from `SearchVendorModal` are not connected.
+- Create/invite vendor form is not migrated into the modal yet.
+- Real status persistence, supplier removal persistence and vendor search result paging are deferred.
+- Exact `react-select` formatting and active filter badges are simplified with native controls for this frontend-only milestone.
+
+### 6. Backend/API gaps deferred
+- `GET /api/couple/suppliers/load-suppliers/:coupleId`
+- `GET /api/couple/suppliers/load-vendors/:coupleId/:vendorCategoryId`
+- `POST /api/couple/suppliers/search`
+- `POST /api/couple/suppliers/store-supplier`
+- `POST /api/couple/suppliers/create-and-invite-vendor`
+- `POST /api/couple/suppliers/change-selected-vendor`
+- `POST /api/couple/suppliers/remove-selected-vendor`
+- Real vendor/supplier backend data sync and logged-in couple/session enforcement remain deferred to a later Level 2 integration milestone.

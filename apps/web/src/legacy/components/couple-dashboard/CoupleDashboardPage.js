@@ -5,12 +5,12 @@ import {
   coupleProfile,
   coupleStats,
   notifications,
-  vendorRows,
 } from '../../data/coupleDashboardData';
 import CoupleChecklistPage from './CoupleChecklistPage';
 import CoupleGuestListPage from './CoupleGuestListPage';
 import CoupleBudgetPlannerPage from './CoupleBudgetPlannerPage';
 import CoupleSeatingChartPage from './CoupleSeatingChartPage';
+import CoupleVendorsPage from './CoupleVendorsPage';
 
 function DashboardBanner() {
   return (
@@ -56,7 +56,7 @@ function GuestListPage() {
 }
 
 function VendorsPage({ search = false }) {
-  return <div className="container wide-tb-50"><div className="d-flex justify-content-between align-items-center mb-4"><h3>{search ? 'Search Vendors' : 'Vendors'}</h3><Link href="/couple/vendors/search" className="btn btn-primary btn-sm">Search Vendors</Link></div><div className="row">{vendorRows.map((vendor) => <div className="col-md-4 mb-4" key={vendor.name}><div className="card"><div className="card-body"><span className="bg-secondary text-white px-1">{vendor.category}</span><h5 className="mt-3">{vendor.name}</h5><p className="text-muted">{vendor.status}</p><button className="btn btn-outline-primary btn-sm">View Supplier</button></div></div></div>)}</div></div>;
+  return <CoupleVendorsPage search={search} />;
 }
 
 function SeatingChartPage() {
