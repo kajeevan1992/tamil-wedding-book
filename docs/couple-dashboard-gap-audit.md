@@ -210,36 +210,38 @@ This audit compares the migrated Next.js files against these legacy source areas
 
 ### `/couple/guest-list`
 
-**Estimated completion: 15%**
+**Estimated completion: 45% after Milestone 3F-2**
 
 **Migrated correctly**
 - Route is wired.
-- Basic guest table exists.
-- Add Guest and Invite By Link buttons exist visually.
+- Guest list now follows the legacy event overview/detail structure with event cards and stats.
+- Guests render in a legacy-style table grouped by Group/Menu/Seating Chart/Attendance/List filters.
+- Add/edit/delete/status/list/menu/table changes work with local React state only.
+- Invite-by-link and spreadsheet import modal shells are represented without backend calls.
 
 **Missing visually**
-- Legacy page includes event cards/stats, guest filters, guest grouping, companions, selected event state, upload-by-spreadsheet modal and invite-by-link modal.
-- `GuestListEvents`, `GuestListGuests`, filters and guest modals are not migrated.
+- Exact `GuestListEvents`, `GuestListGuests`, `WeddingGuestModal`, `WeddingEventModal`, `WeddingEventItemModal`, `ChangeGuestItemModal`, `InviteByLink` and `UploadBySpreadsheet` component boundaries are not fully split out yet.
+- Companion row rendering and some dropdown/select polish still need closer parity.
+- Full social-share buttons and real spreadsheet upload styling are deferred.
 
 **Missing functionally**
 - No `loadGuestsData(coupleId)`.
-- No event selection.
-- No event creation/edit/delete.
-- No guest creation/edit/delete.
-- No companions.
-- No bulk actions.
-- No RSVP link generation.
-- No spreadsheet import.
+- No persisted event creation/edit/delete.
+- No persisted guest creation/edit/delete.
+- No companion add/remove flows.
+- Bulk delete is local state only; backend bulk actions are deferred.
+- No real RSVP link generation.
+- No real spreadsheet import.
 
 **Static/fallback only**
-- All guests and statuses.
+- All events, guests, statuses, menus, lists, groups, tables and invite link values are fallback data.
+- All add/edit/delete/status changes remain frontend-only local state.
 
 **Frontend interaction only needed next**
-- Local event selection.
-- Add/edit guest modal with local state.
-- Local filters and bulk selection.
-- Invite link modal shell.
-- Spreadsheet upload shell.
+- Split the inline local-state implementation into legacy-named components.
+- Add local companion row support.
+- Add local event/item modal shells if requested before backend integration.
+- Polish exact react-select parity after option data is available.
 
 **Backend/API later**
 - `GET /api/couple/guests/load-guests/:coupleId`
@@ -248,7 +250,7 @@ This audit compares the migrated Next.js files against these legacy source areas
 - invite-by-link endpoint.
 
 **Recommended next milestone**
-- 3F-2 Guest list interactive frontend.
+- 3F-3 Budget planner interactive frontend, unless 3F-2 guest-list polish is requested after review.
 
 ---
 
@@ -666,3 +668,51 @@ Expected remaining gaps after 3F-1:
 - Reconnect wedding-date-based due labels when real couple profile/auth state is available.
 - Reconnect checklist load/create/update/status/delete APIs in the later backend/auth integration milestone.
 - Reintroduce backend validation, toast and loading behaviours after Redux/auth/backend integration is approved.
+
+## 3F-2 guest list legacy audit addendum
+
+### 1. Exact legacy files/components used as the source
+
+- `legacy/twb-web/src/router/CoupleRoutes.js` wires `/couple/guest-list` to the legacy couple `GuestList` page.
+- `legacy/twb-web/src/views/dashboard/couple/pages/GuestList.js` is the primary source for selected event state, event stats, guest list data loading and child component wiring.
+- `legacy/twb-web/src/components/couple/guest-list/Events.js` is the source for the event overview cards, selected event summary, guest/list/table stats and event action buttons.
+- `legacy/twb-web/src/components/couple/guest-list/Guests.js` is the source for search, Add Guest, filter nav, select-all, grouped guest table, RSVP/menu/list/table controls and row actions.
+- `legacy/twb-web/src/components/couple/guest-list/Filters.js` is the source for Group/Menu/Seating Chart/Attendance/Lists filter tabs.
+- `legacy/twb-web/src/components/couple/guest-list/WeddingGuestModal.js` is the source for Add/Edit Guest, Invite by link and Import spreadsheet modal tabs.
+- `legacy/twb-web/src/components/couple/guest-list/InviteByLink.js` and `UploadBySpreadsheet.js` are the sources for the invite-link and spreadsheet shell content.
+- `legacy/twb-web/src/services/CoupleService.js` defines the deferred backend API shape for loading guests, adding/updating/deleting guests, changing guest event status, bulk actions, spreadsheet import and guest invitation by link.
+
+### 2. Parts migrated close to 1:1
+
+- The page now uses the legacy `container spacer` layout, event overview cards and selected-event summary sections.
+- Event stats follow the legacy Guests/Confirmed/Pending/Declined wording and class patterns.
+- The guest management area follows the legacy search + Add Guest header, filter nav, select-all controls and grouped table structure.
+- Guest table rows retain the legacy columns for Attendance, Menu, List and Table plus row Edit/Delete actions.
+- The Add/Edit Guest modal preserves the legacy modal ID, tab labels, `Guest Name`, contact field wording, invite-by-link copy and spreadsheet import wording.
+
+### 3. Newly created/local-state-only pieces
+
+- Fallback wedding event, group, menu, list, table and guest records live in `apps/web/src/legacy/data/coupleDashboardData.js`.
+- Guest add/edit/delete, RSVP/status changes, selected event, filters and selected rows are handled in local React state only.
+- Native `<select>` controls stand in for legacy `react-select` controls until real backend-loaded option data is connected.
+
+### 4. Original behaviours still missing
+
+- Real `loadGuestsData(coupleId)` loading and encrypted invite-link generation are not connected.
+- Event creation/edit/delete and event item creation/edit/delete are not persisted.
+- Companion rows and companion actions are not fully migrated.
+- Bulk actions, table capacity checks, spreadsheet upload, social sharing, validation, toast and loading behaviours remain deferred.
+
+### 5. Backend/API gaps deferred
+
+- `GET /api/couple/guests/load-guests/:coupleId`
+- `POST /api/couple/guests/create-update-event`
+- `POST /api/couple/guests/delete-event/:eventId`
+- `POST /api/couple/guests/create-update-item`
+- `POST /api/couple/guests/add-guest`
+- `POST /api/couple/guests/update-guest`
+- `DELETE /api/couple/guests/delete-guest-with-companions/:id`
+- `POST /api/couple/guests/action-on-multiple-guests`
+- `POST /api/couple/guests/change-guest-event-status`
+- `POST /api/couple/guests/bulk-create-by-spreadsheet`
+- `POST /api/couple/guests/add-guest-by-link`

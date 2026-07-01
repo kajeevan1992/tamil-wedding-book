@@ -32,11 +32,64 @@ export const checklistItems = [
   { id: 'suppliers', title: 'Choose wedding suppliers', description: '', checklistCategory: { name: 'Suppliers' }, checklistFilter: { name: 'From 4 to 6 months' }, completed: false, cost: '£1,200' },
 ];
 
-export const guestRows = [
-  { name: 'Arun Kumar', group: 'Family', events: 'Wedding, Reception', status: 'Attending' },
-  { name: 'Priya S', group: 'Friends', events: 'Reception', status: 'Pending' },
-  { name: 'Meera Raj', group: 'Family', events: 'Wedding', status: 'Attending' },
-];
+export const guestListFallbackData = {
+  inviteByLinkUrl: 'https://twb.local/guest-invitation/example',
+  weddingEvents: [
+    {
+      id: 1,
+      name: 'Wedding',
+      image: 'event.png',
+      displayOrder: 1,
+      coupleWeddingEventGroups: [
+        { id: 1, name: 'Family' },
+        { id: 2, name: 'Friends' },
+      ],
+      coupleWeddingEventMenus: [
+        { id: 1, name: 'Vegetarian' },
+        { id: 2, name: 'Non Vegetarian' },
+      ],
+      coupleWeddingEventLists: [
+        { id: 1, name: 'Bride' },
+        { id: 2, name: 'Groom' },
+      ],
+      coupleWeddingEventTables: [
+        { id: 1, name: 'Table 1', chairs: 8 },
+        { id: 2, name: 'Table 2', chairs: 8 },
+      ],
+      guests: [
+        { id: 1, fullName: 'Arun Kumar', email: 'arun@example.com', mobile: '+44 7000 000001', address: 'London', groupId: 1, menuId: 1, listId: 1, tableId: 1, status: 'confirmed' },
+        { id: 2, fullName: 'Priya S', email: 'priya@example.com', mobile: '+44 7000 000002', address: 'London', groupId: 2, menuId: 2, listId: 2, tableId: 2, status: 'pending' },
+        { id: 3, fullName: 'Meera Raj', email: 'meera@example.com', mobile: '+44 7000 000003', address: 'London', groupId: 1, menuId: 1, listId: 1, tableId: 1, status: 'declined' },
+      ],
+    },
+    {
+      id: 2,
+      name: 'Reception',
+      image: 'guest-list.png',
+      displayOrder: 2,
+      coupleWeddingEventGroups: [
+        { id: 1, name: 'Family' },
+        { id: 2, name: 'Friends' },
+      ],
+      coupleWeddingEventMenus: [
+        { id: 1, name: 'Vegetarian' },
+        { id: 2, name: 'Non Vegetarian' },
+      ],
+      coupleWeddingEventLists: [
+        { id: 1, name: 'Bride' },
+        { id: 2, name: 'Groom' },
+      ],
+      coupleWeddingEventTables: [
+        { id: 1, name: 'Table 1', chairs: 10 },
+        { id: 2, name: 'Table 2', chairs: 10 },
+      ],
+      guests: [
+        { id: 4, fullName: 'Kavin Thiru', email: 'kavin@example.com', mobile: '+44 7000 000004', address: 'London', groupId: 2, menuId: 2, listId: 2, tableId: 1, status: 'confirmed' },
+        { id: 5, fullName: 'Nila Raj', email: 'nila@example.com', mobile: '+44 7000 000005', address: 'London', groupId: 1, menuId: 1, listId: 1, tableId: 2, status: 'pending' },
+      ],
+    },
+  ],
+};
 
 export const vendorRows = [
   { name: 'Grand Tamil Wedding Venue', category: 'Venue', status: 'Selected' },
