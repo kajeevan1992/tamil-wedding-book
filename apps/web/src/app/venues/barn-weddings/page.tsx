@@ -1,5 +1,5 @@
-import { LegacyClientPage } from '@/components/migration/LegacyClientPage';
+import PublicPlanningPageClient from '@/legacy/components/planning/PublicPlanningPageClient';
 
 export default function Page() {
-  return <LegacyClientPage route="/venues/barn-weddings" legacyComponent="@views/venue/BarnWeddings" />;
+  return <PublicPlanningPageClient page="barnWeddings" />;
 }
