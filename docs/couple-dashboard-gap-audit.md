@@ -772,3 +772,52 @@ Expected remaining gaps after 3F-1:
 - `POST /api/couple/budget-planner/create-update-expense-payment`
 - `DELETE /api/couple/budget-planner/delete-expense-payment/:paymentId`
 - Couple account/session integration, saved totals calculation and supplier/vendor synchronization.
+
+## 3F-4 seating chart legacy audit addendum
+
+### 1. Exact legacy seating chart files used
+- `legacy/twb-web/src/views/dashboard/couple/pages/SeatingChart.js` is the primary source for the authenticated `/couple/seating-chart` page, local chart state shape, event selection, chart/list views, guest drag/drop, table position updates, and deferred seating-chart service calls.
+- `legacy/twb-web/src/components/couple/seating-charts/SCSidebar.js` is the source for the left sidebar, table palette, guest search, unseated guest list, sidebar show/hide control, and Add Guest button placement.
+- `legacy/twb-web/src/components/couple/seating-charts/Tables.js` is the source for the draggable/clickable table-shape palette and `/assets/images/seating-charts/...` icons.
+- `legacy/twb-web/src/components/couple/seating-charts/SCTable.js` is the source for one-sided, two-sided, four-sided, and rounded table chair layouts and seated guest pills.
+- `legacy/twb-web/src/components/couple/seating-charts/SCWindow.js` is the source for the resizable `sc-window` canvas wrapper and resize handle placement.
+- `legacy/twb-web/src/components/couple/seating-charts/SCHeader.js` is the source for the centered printable chart header, logo, couple names, event badge, venue placeholder, and wedding date.
+- `legacy/twb-web/src/components/couple/seating-charts/Controls.js` is the source for chart/list toggle, event selector, PDF button, and zoom action button markup.
+- `legacy/twb-web/src/components/couple/seating-charts/style.css` was copied to `apps/web/public/assets/css/seating-chart.css` for the legacy table, chair, guest, sidebar, and canvas classes.
+- `legacy/twb-web/src/services/CoupleService.js` defines the deferred seating-chart API shape: load events, load event tables/guests, set table position, set guest seat, unseat guest, delete table, and change window height.
+
+### 2. Original UI HTML files used
+- `legacy/original-ui-html/couples-dashboard.html` was inspected for the dashboard seating-chart tab reference, including `seatingchart-manage`, chart/list tab IDs, and seating-chart dashboard navigation.
+- `legacy/original-ui-html/planning-seating-chart.html` was inspected as the public planning seating-chart reference, but authenticated React source remained higher priority for `/couple/seating-chart`.
+
+### 3. Parts migrated close to 1:1
+- The page now uses the legacy `sc-window`, `sc-sidebar`, `sc-content`, `sc-tools`, `events`, `sc-table`, `sc-table-chair`, and `sc-guest` class structure.
+- The sidebar includes legacy-style table palette icons, guest search, unassigned guest list, and hide/show control.
+- The canvas renders legacy-style one-sided, two-sided, four-sided, and rounded table classes with droppable chair circles.
+- Guests can be dragged from the unassigned list onto seats, dragged between seats, and removed from a seat with a double click.
+- Tables can be moved on the frontend canvas and temporary tables can be added/removed using local React state.
+- Assigned, unassigned, and total guest counts are shown above the chart.
+
+### 4. Newly created/local-state-only parts
+- All events, tables, guests, seat assignments, table positions, and added/deleted tables are fallback data in React state only.
+- The table movement implementation uses pointer events instead of the legacy `react-draggable` package to keep this milestone small and frontend-only while retaining the same visible class structure.
+- Event selection uses a native select instead of the legacy Bootstrap dropdown because backend-loaded events and Bootstrap dropdown state are not integrated yet.
+- Zoom/PDF buttons are visible as legacy controls but remain non-persistent frontend placeholders.
+
+### 5. Original behaviours still missing
+- Real `react-zoom-pan-pinch` zooming/centering/reset behaviour is not wired yet.
+- PDF export is not implemented.
+- Resizing the seating-chart window is visually represented but not persisted and not actively resized by drag yet.
+- Add/edit table modal behaviour from the guest-list `WeddingEventItemModal` is not migrated; table creation uses a direct local add action.
+- Add Guest modal from the guest list is not connected in the seating-chart sidebar.
+- Companion guest rendering/sorting and complex guest grouping are simplified in fallback data.
+
+### 6. Backend/API gaps deferred
+- `GET /api/couple/seating-chart/load-wedding-events/:coupleId`
+- `GET /api/couple/seating-chart/load-event-tables-and-guests/:eventId`
+- `POST /api/couple/seating-chart/set-table-position`
+- `POST /api/couple/seating-chart/set-guest-seat`
+- `POST /api/couple/seating-chart/un-seat-guest`
+- `DELETE /api/couple/seating-chart/delete-table/:eventId/:tableId`
+- `POST /api/couple/seating-chart/change-window-height`
+- Guest list/backend sync and logged-in couple/session enforcement remain deferred to a later Level 2 integration milestone.
