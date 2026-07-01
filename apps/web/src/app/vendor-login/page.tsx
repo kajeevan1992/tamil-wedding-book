@@ -1,5 +1,5 @@
-import { LegacyClientPage } from '@/components/migration/LegacyClientPage';
+import AuthPageClient from '@/legacy/components/auth/AuthPageClient';
 
 export default function Page() {
-  return <LegacyClientPage route="/vendor-login" legacyComponent="@views/auth/VendorLogin" />;
+  return <AuthPageClient page="vendorLogin" />;
 }

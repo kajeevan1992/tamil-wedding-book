@@ -1,5 +1,5 @@
-import { LegacyClientPage } from '@/components/migration/LegacyClientPage';
+import AuthPageClient from '@/legacy/components/auth/AuthPageClient';
 
 export default function Page() {
-  return <LegacyClientPage route="/reset-password/:hash" legacyComponent="@views/auth/ResetPassword" />;
+  return <AuthPageClient page="resetPassword" />;
 }
