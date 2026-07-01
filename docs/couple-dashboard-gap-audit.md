@@ -168,12 +168,13 @@ This audit compares the migrated Next.js files against these legacy source areas
 
 ### `/couple/check-list`
 
-**Estimated completion: 18%**
+**Estimated completion: 48% after Milestone 3F-1**
 
 **Migrated correctly**
 - Route is wired.
-- Basic checklist table and action buttons exist.
-- Some task/status concepts are represented.
+- Checklist now uses local React state for fallback tasks.
+- Tasks are grouped by timeline/category and show due timing, status and progress.
+- Add, edit, delete and complete/incomplete interactions are available without backend persistence.
 
 **Missing visually**
 - Legacy checklist has a complex responsive layout with filters, month/timeline groupings, cards, status controls, costs and download/add/filter buttons.
@@ -182,20 +183,19 @@ This audit compares the migrated Next.js files against these legacy source areas
 
 **Missing functionally**
 - No `loadChecklists(coupleId)`.
-- No filter state by category/status/cost.
-- No add/edit modal behavior.
-- No task completion updates.
-- No delete behavior.
-- No currency formatting.
+- No backend-backed filter data by category/status/cost.
+- No exact legacy add/edit modal parity yet; current add/edit form is local-state only.
+- No persisted task completion updates.
+- No persisted delete behavior.
+- No saved currency formatting rules from backend data.
 
 **Static/fallback only**
-- All checklist rows.
+- All checklist rows and every add/edit/delete/status change remain frontend-only fallback state.
 
 **Frontend interaction only needed next**
-- Filter UI and filter modal using local state.
-- Add/edit task modal using local state.
-- Status toggle using local state.
-- Timeline grouping.
+- Exact legacy filter modal polish.
+- Exact legacy add/update modal polish.
+- Any remaining currency/cost formatting and mobile card parity once reviewed.
 
 **Backend/API later**
 - `GET /api/couple/checklist/load-checklists/:coupleId`
@@ -204,7 +204,7 @@ This audit compares the migrated Next.js files against these legacy source areas
 - Possible delete endpoint mismatch noted in prior migration audit.
 
 **Recommended next milestone**
-- 3F-1 Checklist interactive frontend.
+- 3F-2 Guest list interactive frontend, unless 3F-1 checklist polish is requested after review.
 
 ---
 
@@ -602,3 +602,67 @@ Do **not** implement these in frontend completion milestones unless explicitly a
 - `/couple/web-shoots` matches the legacy couple route spelling.
 - Public `/wedding-shoots` is separate and already handled by public planning pages.
 - No supplier, venue or admin dashboard routes were audited or changed in this milestone.
+
+## 3F-1 implementation note
+
+Milestone 3F-1 upgrades `/couple/check-list` from a purely static table to a client-side interactive checklist using fallback data only. It should improve the checklist estimate, but backend parity remains deferred because no API loading/saving is connected yet.
+
+Expected remaining gaps after 3F-1:
+
+- API-backed `loadChecklists(coupleId)` remains deferred.
+- Saved status changes remain deferred.
+- Backend-backed custom task add/edit/delete remains deferred.
+- Wedding-date synchronized due-date calculations remain deferred.
+- Exact legacy filter modal and add/update modal parity may still require a polish pass after the local-state version is reviewed.
+
+## PR #12 legacy checklist audit addendum
+
+### 1. Exact legacy files/components used as the source
+
+- `legacy/twb-web/src/router/CoupleRoutes.js` wires the legacy dashboard route `check-list` to the couple `Checklist` page.
+- `legacy/twb-web/src/views/dashboard/couple/pages/Checklist.js` is the primary source of truth for the authenticated couple checklist page layout, state shape, filtering, progress, task grouping, add/edit modal triggers and status toggle behaviour.
+- `legacy/twb-web/src/components/couple/checklist/Filters.js` is the source for the Results, Status, By date and By Category filter sidebar markup.
+- `legacy/twb-web/src/components/couple/checklist/FiltersModal.js` is the source for the mobile filter modal structure and wording.
+- `legacy/twb-web/src/components/couple/checklist/ChecklistAddUpdateModal.js` is the source for the Add new task/Edit task modal wording, task title/description inputs, category/date selectors and submit button structure.
+- `legacy/twb-web/src/services/CoupleService.js` defines the future backend API call shape for loading checklists, creating/updating checklist rows, changing checklist status and deleting checklist rows.
+
+### 2. Original checklist UI migrated more directly in PR #12
+
+- The page now follows the legacy `container spacer` two-column structure with a left filter column and right checklist content column.
+- The filter area now follows the legacy Results, Status, By date and By Category sections, including result filter pills and the `active-filter`, `timeline`, `timeline-title`, `fn-grey`, `text-success` and `text-warning` class patterns.
+- The checklist progress copy now follows the legacy wording: `You Have Completed X out of Y Tasks`.
+- The Add new task entry now uses the legacy `card mt-3 bg-light-grey`, `card-body c-p p-095-09`, `bi bi-plus-circle plus-icon fs-32px` and `Add new task` structure.
+- Task groups now use the legacy date/timeline grouping and `tamil-task-operational-parent` class pattern.
+- Individual task rows now use the legacy `list-group-item tamil-task-operational`, `done`/`to-do`, `task-icon-bg`, `task-title` and `badge badge-light text-muted fn-10` class patterns.
+- Add/edit and mobile filter overlays now use the legacy modal IDs, titles and button wording while staying frontend-only.
+
+### 3. Parts newly created in PR #12
+
+- The current task data is fallback/static data in `apps/web/src/legacy/data/coupleDashboardData.js`, shaped to resemble the legacy checklist objects enough for frontend rendering.
+- The current add/edit/delete/complete/filter behaviour is local React state only.
+- The current date text uses static fallback labels instead of calculating against a saved wedding date.
+- The current modal controls use native `<select>` fields instead of the legacy `react-select` controls because backend-provided category/filter option data is not connected yet.
+
+### 4. Original behaviours still missing
+
+- `loadChecklists(coupleId)` is not connected.
+- `createUpdateChecklist(checklist)` is not connected.
+- `changeChecklistStatus(checklist)` is not connected.
+- Delete persistence is not connected, and the legacy delete endpoint mismatch still needs backend review.
+- Wedding-date-based date labels from `subtractAndformatDate`/`formatDate` are not connected because real couple profile data is not available in this frontend-only milestone.
+- The full supplier/vendor and budget-planner sections inside the legacy add/update modal are not migrated yet because they depend on backend-loaded vendors, categories and budget planner data.
+- Toast/loading/validation message behaviours are not connected because Redux, backend responses and validation responses are deferred.
+
+### 5. Migration vs replacement assessment
+
+- The first PR #12 version was closer to a recreated frontend replacement because it used a new card/sidebar structure and new wording.
+- This updated version is closer to a migration because it reuses the legacy page layout, filter/sidebar structure, progress wording, add-task card, grouped task list classes and modal wording from the original checklist implementation.
+- It is still not a complete 1:1 migration because data loading/saving, backend-backed modal options and some modal sub-sections remain deferred by the frontend-only milestone boundary.
+
+### 6. Changes still needed to make it closer to legacy
+
+- Migrate the legacy `ChecklistFilters`, `ChecklistFiltersModal` and `ChecklistAddUpdateModal` components as separate components instead of keeping them inline once their dependencies are available in the migrated app.
+- Reintroduce `react-select`-based category/date/vendor/expense selectors when backend option data is ready.
+- Reconnect wedding-date-based due labels when real couple profile/auth state is available.
+- Reconnect checklist load/create/update/status/delete APIs in the later backend/auth integration milestone.
+- Reintroduce backend validation, toast and loading behaviours after Redux/auth/backend integration is approved.

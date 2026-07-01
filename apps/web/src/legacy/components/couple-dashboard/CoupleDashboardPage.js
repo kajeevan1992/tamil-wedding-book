@@ -3,13 +3,13 @@
 import Link from 'next/link';
 import {
   budgetCategories,
-  checklistItems,
   coupleProfile,
   coupleStats,
   guestRows,
   notifications,
   vendorRows,
 } from '../../data/coupleDashboardData';
+import CoupleChecklistPage from './CoupleChecklistPage';
 
 function DashboardBanner() {
   return (
@@ -46,8 +46,9 @@ function AccountPage({ tab }) {
 }
 
 function ChecklistPage() {
-  return <div className="container wide-tb-50"><div className="d-flex justify-content-between align-items-center mb-4"><h3>Checklist</h3><button className="btn btn-primary btn-sm">Add Task</button></div><div className="card"><div className="card-body"><table className="table"><thead><tr><th>Timeline</th><th>Task</th><th>Status</th><th></th></tr></thead><tbody>{checklistItems.map((item) => <tr key={item.title}><td>{item.category}</td><td>{item.title}</td><td><span className="badge bg-secondary">{item.status}</span></td><td><button className="btn btn-outline-primary btn-sm">Edit</button></td></tr>)}</tbody></table></div></div></div>;
+  return <CoupleChecklistPage />;
 }
+
 
 function GuestListPage() {
   return <div className="container wide-tb-50"><div className="d-flex justify-content-between align-items-center mb-4"><h3>Guest List</h3><div><button className="btn btn-primary btn-sm mr-2">Add Guest</button><button className="btn btn-outline-primary btn-sm">Invite By Link</button></div></div><div className="card"><div className="card-body"><table className="table"><thead><tr><th>Name</th><th>Group</th><th>Events</th><th>Status</th></tr></thead><tbody>{guestRows.map((guest) => <tr key={guest.name}><td>{guest.name}</td><td>{guest.group}</td><td>{guest.events}</td><td>{guest.status}</td></tr>)}</tbody></table></div></div></div>;
