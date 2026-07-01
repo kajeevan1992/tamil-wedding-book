@@ -97,11 +97,36 @@ export const vendorRows = [
   { name: 'Elegant Florist Studio', category: 'Florist', status: 'Pending' },
 ];
 
-export const budgetCategories = [
-  { id: 'venue', name: 'Venue', estimated: '£6,000', spent: '£2,500' },
-  { id: 'photo-video', name: 'Photo & Video', estimated: '£2,500', spent: '£800' },
-  { id: 'decor', name: 'Decor', estimated: '£1,500', spent: '£300' },
-];
+export const budgetPlannerFallbackData = {
+  id: 1,
+  budgetPlannerCategories: [
+    {
+      id: 1,
+      name: 'Venue',
+      icon: 'bi bi-bank',
+      categoryExpenses: [
+        { id: 1, name: 'Venue deposit', estimatedCost: 6000, finalCost: 5500, note: 'Initial venue booking', payments: [{ id: 1, amount: 2500, paid: true, paymentDate: '2026-07-01', dueDate: '2026-07-01', paidBy: 'Kajee', paymentMethod: 'Card' }, { id: 2, amount: 3000, paid: false, paymentDate: '', dueDate: '2026-10-01', paidBy: '', paymentMethod: '' }] },
+        { id: 2, name: 'Catering', estimatedCost: 3500, finalCost: 3800, note: '', payments: [{ id: 3, amount: 1000, paid: true, paymentDate: '2026-07-01', dueDate: '2026-07-01', paidBy: 'Partner', paymentMethod: 'Bank transfer' }] },
+      ],
+    },
+    {
+      id: 2,
+      name: 'Photo & Video',
+      icon: 'bi bi-camera',
+      categoryExpenses: [
+        { id: 3, name: 'Photography package', estimatedCost: 2500, finalCost: 2400, note: 'Includes engagement shoot', payments: [{ id: 4, amount: 800, paid: true, paymentDate: '2026-07-01', dueDate: '2026-07-01', paidBy: 'Kajee', paymentMethod: 'Card' }] },
+      ],
+    },
+    {
+      id: 3,
+      name: 'Decor',
+      icon: 'bi bi-flower1',
+      categoryExpenses: [
+        { id: 4, name: 'Flowers', estimatedCost: 1500, finalCost: 1200, note: '', payments: [{ id: 5, amount: 300, paid: false, paymentDate: '', dueDate: '2026-09-01', paidBy: '', paymentMethod: '' }] },
+      ],
+    },
+  ],
+};
 
 export const notifications = [
   'Your checklist has pending tasks.',
