@@ -1,5 +1,5 @@
-import { LegacyClientPage } from '@/components/migration/LegacyClientPage';
+import CoupleDashboardPageClient from '@/legacy/components/couple-dashboard/CoupleDashboardPageClient';
 
 export default function Page() {
-  return <LegacyClientPage route="/couple/account" legacyComponent="@views/dashboard/couple/account/Information" />;
+  return <CoupleDashboardPageClient page="account" />;
 }
