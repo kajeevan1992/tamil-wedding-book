@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import {
-  budgetCategories,
   coupleProfile,
   coupleStats,
   notifications,
@@ -10,6 +9,7 @@ import {
 } from '../../data/coupleDashboardData';
 import CoupleChecklistPage from './CoupleChecklistPage';
 import CoupleGuestListPage from './CoupleGuestListPage';
+import CoupleBudgetPlannerPage from './CoupleBudgetPlannerPage';
 
 function DashboardBanner() {
   return (
@@ -63,7 +63,7 @@ function SeatingChartPage() {
 }
 
 function BudgetPlannerPage({ category = false }) {
-  return <div className="container wide-tb-50"><div className="d-flex justify-content-between align-items-center mb-4"><h3>{category ? 'Budget Category' : 'Budget Planner'}</h3><button className="btn btn-primary btn-sm">Add Expense</button></div><div className="row">{budgetCategories.map((cat) => <div className="col-md-4 mb-4" key={cat.id}><Link href={`/couple/budget-planner/${cat.id}`}><div className="card"><div className="card-body"><h5>{cat.name}</h5><p>Estimated: {cat.estimated}</p><p>Spent: {cat.spent}</p></div></div></Link></div>)}</div></div>;
+  return <CoupleBudgetPlannerPage categoryRoute={category} />;
 }
 
 function DressesPage() {

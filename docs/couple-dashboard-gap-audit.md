@@ -297,72 +297,77 @@ This audit compares the migrated Next.js files against these legacy source areas
 
 ### `/couple/budget-planner`
 
-**Estimated completion: 18%**
+**Estimated completion: 50% after Milestone 3F-3**
 
 **Migrated correctly**
 - Route is wired.
-- Budget category cards exist.
-- Link to category route exists.
+- Legacy-style budget planner sidebar, header tabs, PDF button, stats card and category links are represented.
+- Estimated Cost, Final Cost, Paid and Pending totals calculate from fallback data.
+- Overview chart is represented as local progress bars instead of the legacy PieDoughnutChart dependency.
 
 **Missing visually**
-- Legacy budget planner includes dedicated sidebar, header, stats header, charts, payment lists, category action modal and custom CSS.
-- Pie/doughnut chart is missing.
-- Budget totals and remaining/paid metrics are missing.
+- Exact `Sidebar`, `Header`, `StatsHeader`, `PieDoughnutChart`, `CategoryActionModal`, `Payments`, `ExpensePaymentModal` and `ExpenseNoteModal` component boundaries are not fully split out yet.
+- Real pie/doughnut chart rendering is approximated with progress bars until chart dependencies/data are ready.
+- PDF export is a shell button only.
 
 **Missing functionally**
 - No `loadBudgetPlanner(coupleId)`.
-- No add/edit/delete category modal.
-- No PDF export.
-- No expense/payment state.
+- Category add/edit/delete is local state only.
+- Expense/payment/note add/edit/delete is local state only.
+- Paid/pending status toggles are local state only.
+- No real PDF export.
 
 **Static/fallback only**
-- All categories and totals.
+- All categories, expenses, payments, notes and totals use fallback data.
+- All budget changes remain frontend-only local state.
 
 **Frontend interaction only needed next**
-- Category modal with local state.
-- Totals calculation from local data.
-- Stats cards/charts from local data.
+- Split the inline implementation into legacy-named components.
+- Restore exact PieDoughnutChart visual parity when chart dependency strategy is approved.
+- Polish payment modal and category modal with the same field/validation structure as legacy.
 
 **Backend/API later**
 - `GET /api/couple/budget-planner/load/:coupleId`
 - category/expense/payment create-update/delete endpoints.
 
 **Recommended next milestone**
-- 3F-3 Budget planner interactive frontend.
+- 3F-4 Seating chart drag/drop frontend, unless 3F-3 budget planner polish is requested after review.
 
 ---
 
 ### `/couple/budget-planner/[id]`
 
-**Estimated completion: 12%**
+**Estimated completion: 50% after Milestone 3F-3**
 
 **Migrated correctly**
 - Dynamic route is wired.
-- Basic category view reuses budget cards.
+- Category page now selects fallback category data from the URL.
+- Legacy-style `CategoryHeader` structure, editable expense table, note modal shell, payment rows and Add new expense action are represented.
 
 **Missing visually**
-- Legacy category page has `CategoryHeader`, inline expense rows, payment dropdowns, notes modal and expense payment modal.
+- Exact split component parity for `CategoryHeader`, `ExpensePaymentModal` and `ExpenseNoteModal` remains deferred.
+- Dropdown menu behaviour is simplified to direct buttons because Bootstrap JS behaviour is not the focus of this frontend-only pass.
 
 **Missing functionally**
-- No selected category from URL.
-- No expense add/edit/delete.
-- No payment add/edit/delete.
-- No note modal.
-- No totals by category.
+- No backend selected category load.
+- Expense add/edit/delete is local state only.
+- Payment add/edit/delete and paid/pending toggles are local state only.
+- Note modal is local state only.
+- Category totals calculate from fallback data only.
 
 **Static/fallback only**
-- Entire category content.
+- Entire category content, expense rows, payment rows and notes are fallback/local state only.
 
 **Frontend interaction only needed next**
-- Local selected category routing.
-- Expense/payment modal shells.
-- Local calculations.
+- Exact modal/component split parity.
+- Payment dropdown styling and note/payment modal polish.
+- Reconnect to saved data in Level 2/backend milestone.
 
 **Backend/API later**
 - Budget category/expense/payment endpoints.
 
 **Recommended next milestone**
-- 3F-3 Budget planner interactive frontend.
+- 3F-4 Seating chart drag/drop frontend, unless 3F-3 budget planner polish is requested after review.
 
 ---
 
@@ -716,3 +721,51 @@ Expected remaining gaps after 3F-1:
 - `POST /api/couple/guests/change-guest-event-status`
 - `POST /api/couple/guests/bulk-create-by-spreadsheet`
 - `POST /api/couple/guests/add-guest-by-link`
+
+## 3F-3 budget planner legacy audit addendum
+
+### 1. Exact legacy files/components used as the source
+
+- `legacy/twb-web/src/router/CoupleRoutes.js` wires `/couple/budget-planner` and `/couple/budget-planner/:id`.
+- `legacy/twb-web/src/views/dashboard/couple/pages/BudgetPlanner.js` is the main layout/state/API source for sidebar, tabs, category selection, PDF export and category/expense/payment actions.
+- `legacy/twb-web/src/components/couple/budget-planner/Sidebar.js` is the source for the Categories sidebar and Stats/category links.
+- `legacy/twb-web/src/components/couple/budget-planner/Header.js` is the source for Budget Planner/Payments tabs and PDF button.
+- `legacy/twb-web/src/views/dashboard/couple/pages/budget-planner/Stats.js` and `StatsHeader.js` are the sources for estimated/final/paid/pending totals and chart area.
+- `legacy/twb-web/src/views/dashboard/couple/pages/budget-planner/Category.js` and `CategoryHeader.js` are the sources for the category detail header, expense table, payment rows, note action and Add new expense row.
+- `legacy/twb-web/src/components/couple/budget-planner/CategoryActionModal.js`, `ExpensePaymentModal.js`, `ExpenseNoteModal.js` and `Payments.js` are the modal/payment list sources.
+- `legacy/twb-web/src/services/CoupleService.js` defines deferred API shapes for loading planner data, category actions, expense actions and expense payment actions.
+
+### 2. Original-ui-html files used
+
+- `legacy/original-ui-html/planning-budget.html` was inspected as the available static budget/planning HTML reference. It is a public planning page reference rather than the authenticated couple dashboard budget planner, so the React legacy dashboard source remained the primary reference.
+
+### 3. Parts migrated close to 1:1
+
+- The migrated page follows the legacy `container spacer mb-5` budget layout with Categories sidebar, Budget Planner/Payments tabs and PDF button.
+- The overview page preserves Estimated Cost, Final Cost, Paid and Pending wording/classes and derives totals from local expense/payment data.
+- The category route preserves the legacy category header wording, edit/delete buttons, estimated/final cost totals, progress bar, expense table columns, note action, paid payment reveal and Add new expense row.
+- The Payments tab preserves the Show: All/Paid/Pending filter and payment table columns.
+
+### 4. Newly created/local-state-only pieces
+
+- Fallback budget planner categories, expenses, notes and payments live in `apps/web/src/legacy/data/coupleDashboardData.js`.
+- Category add/edit/delete, expense add/edit/delete, note edits, payment add/edit/delete and paid/pending toggles are local React state only.
+- Progress bars approximate the chart area until the final chart dependency strategy is approved.
+
+### 5. Original behaviours still missing
+
+- Real `loadBudgetPlanner(coupleId)` loading is not connected.
+- Real `budgetPlannerCategoryAction`, `deleteBudgetPlannerCategory`, `createUpdateExpense`, `deleteExpense`, `createUpdateExpensePayment` and `deleteExpensePayment` calls are not connected.
+- PDF export, toast/loading/validation handling and exact `react-select` icon picker parity remain deferred.
+- Supplier/vendor synchronization from checklist/budget data remains deferred.
+
+### 6. Backend/API gaps deferred
+
+- `GET /api/couple/budget-planner/load/:coupleId`
+- `POST /api/couple/budget-planner/create-update-category`
+- `DELETE /api/couple/budget-planner/delete-category/:categoryId`
+- `POST /api/couple/budget-planner/create-update-expense`
+- `DELETE /api/couple/budget-planner/delete-expense/:expenseId`
+- `POST /api/couple/budget-planner/create-update-expense-payment`
+- `DELETE /api/couple/budget-planner/delete-expense-payment/:paymentId`
+- Couple account/session integration for saved backend totals

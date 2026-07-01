@@ -97,11 +97,45 @@ export const vendorRows = [
   { name: 'Elegant Florist Studio', category: 'Florist', status: 'Pending' },
 ];
 
-export const budgetCategories = [
-  { id: 'venue', name: 'Venue', estimated: '£6,000', spent: '£2,500' },
-  { id: 'photo-video', name: 'Photo & Video', estimated: '£2,500', spent: '£800' },
-  { id: 'decor', name: 'Decor', estimated: '£1,500', spent: '£300' },
-];
+export const budgetPlannerFallbackData = {
+  id: 1,
+  totalEstimatedCost: 10000,
+  budgetPlannerCategories: [
+    {
+      id: 'venue',
+      name: 'Venue',
+      icon: 'bi-bank',
+      categoryExpenses: [
+        { id: 'venue-hire', name: 'Venue hire', estimatedCost: 6000, finalCost: 6250, note: 'Deposit paid to hold date.', payments: [
+          { id: 'venue-payment-1', amount: 2500, paid: true, paidBy: 'Card', paymentDate: '2026-01-15', dueDate: '' },
+          { id: 'venue-payment-2', amount: 3750, paid: false, paidBy: '', paymentDate: '', dueDate: '2026-09-01' },
+        ] },
+      ],
+    },
+    {
+      id: 'photo-video',
+      name: 'Photo & Video',
+      icon: 'bi-camera',
+      categoryExpenses: [
+        { id: 'photo-package', name: 'Photography package', estimatedCost: 2500, finalCost: 2400, note: '', payments: [
+          { id: 'photo-payment-1', amount: 800, paid: true, paidBy: 'Bank transfer', paymentDate: '2026-02-10', dueDate: '' },
+          { id: 'photo-payment-2', amount: 1600, paid: false, paidBy: '', paymentDate: '', dueDate: '2026-08-15' },
+        ] },
+      ],
+    },
+    {
+      id: 'decor',
+      name: 'Decor',
+      icon: 'bi-flower1',
+      categoryExpenses: [
+        { id: 'stage-decor', name: 'Stage decor', estimatedCost: 1500, finalCost: 1350, note: 'Confirm colours later.', payments: [
+          { id: 'decor-payment-1', amount: 300, paid: true, paidBy: 'Cash', paymentDate: '2026-03-05', dueDate: '' },
+          { id: 'decor-payment-2', amount: 1050, paid: false, paidBy: '', paymentDate: '', dueDate: '2026-07-30' },
+        ] },
+      ],
+    },
+  ],
+};
 
 export const notifications = [
   'Your checklist has pending tasks.',
