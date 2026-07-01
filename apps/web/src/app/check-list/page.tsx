@@ -1,5 +1,5 @@
-import { LegacyClientPage } from '@/components/migration/LegacyClientPage';
+import PublicPlanningPageClient from '@/legacy/components/planning/PublicPlanningPageClient';
 
 export default function Page() {
-  return <LegacyClientPage route="/check-list" legacyComponent="@views/planning/Checklist" />;
+  return <PublicPlanningPageClient page="checklist" />;
 }
