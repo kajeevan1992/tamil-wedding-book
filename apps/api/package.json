@@ -1,0 +1,12 @@
+{
+  "name": "@twb/api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node src/server.cjs",
+    "start": "node src/server.cjs"
+  },
+  "dependencies": {
+    "express": "latest"
+  }
+}
