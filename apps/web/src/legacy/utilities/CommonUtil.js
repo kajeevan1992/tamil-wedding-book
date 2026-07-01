@@ -1,6 +1,7 @@
 import { NavLink } from '../components/NextNavLink';
 
 export const encryptAsUrl = (data) => btoa(JSON.stringify(data));
+export const decryptUrl = (data) => JSON.parse(atob(data));
 
 const PlanningToolsRightContent = () => (
   <>
