@@ -168,12 +168,13 @@ This audit compares the migrated Next.js files against these legacy source areas
 
 ### `/couple/check-list`
 
-**Estimated completion: 18%**
+**Estimated completion: 48% after Milestone 3F-1**
 
 **Migrated correctly**
 - Route is wired.
-- Basic checklist table and action buttons exist.
-- Some task/status concepts are represented.
+- Checklist now uses local React state for fallback tasks.
+- Tasks are grouped by timeline/category and show due timing, status and progress.
+- Add, edit, delete and complete/incomplete interactions are available without backend persistence.
 
 **Missing visually**
 - Legacy checklist has a complex responsive layout with filters, month/timeline groupings, cards, status controls, costs and download/add/filter buttons.
@@ -182,20 +183,19 @@ This audit compares the migrated Next.js files against these legacy source areas
 
 **Missing functionally**
 - No `loadChecklists(coupleId)`.
-- No filter state by category/status/cost.
-- No add/edit modal behavior.
-- No task completion updates.
-- No delete behavior.
-- No currency formatting.
+- No backend-backed filter data by category/status/cost.
+- No exact legacy add/edit modal parity yet; current add/edit form is local-state only.
+- No persisted task completion updates.
+- No persisted delete behavior.
+- No saved currency formatting rules from backend data.
 
 **Static/fallback only**
-- All checklist rows.
+- All checklist rows and every add/edit/delete/status change remain frontend-only fallback state.
 
 **Frontend interaction only needed next**
-- Filter UI and filter modal using local state.
-- Add/edit task modal using local state.
-- Status toggle using local state.
-- Timeline grouping.
+- Exact legacy filter modal polish.
+- Exact legacy add/update modal polish.
+- Any remaining currency/cost formatting and mobile card parity once reviewed.
 
 **Backend/API later**
 - `GET /api/couple/checklist/load-checklists/:coupleId`
@@ -204,7 +204,7 @@ This audit compares the migrated Next.js files against these legacy source areas
 - Possible delete endpoint mismatch noted in prior migration audit.
 
 **Recommended next milestone**
-- 3F-1 Checklist interactive frontend.
+- 3F-2 Guest list interactive frontend, unless 3F-1 checklist polish is requested after review.
 
 ---
 
@@ -602,3 +602,15 @@ Do **not** implement these in frontend completion milestones unless explicitly a
 - `/couple/web-shoots` matches the legacy couple route spelling.
 - Public `/wedding-shoots` is separate and already handled by public planning pages.
 - No supplier, venue or admin dashboard routes were audited or changed in this milestone.
+
+## 3F-1 implementation note
+
+Milestone 3F-1 upgrades `/couple/check-list` from a purely static table to a client-side interactive checklist using fallback data only. It should improve the checklist estimate, but backend parity remains deferred because no API loading/saving is connected yet.
+
+Expected remaining gaps after 3F-1:
+
+- API-backed `loadChecklists(coupleId)` remains deferred.
+- Saved status changes remain deferred.
+- Backend-backed custom task add/edit/delete remains deferred.
+- Wedding-date synchronized due-date calculations remain deferred.
+- Exact legacy filter modal and add/update modal parity may still require a polish pass after the local-state version is reviewed.

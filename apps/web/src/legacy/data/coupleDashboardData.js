@@ -26,10 +26,10 @@ export const coupleLinks = [
 ];
 
 export const checklistItems = [
-  { category: '12+ months', title: 'Set your wedding budget', status: 'Done' },
-  { category: '10-12 months', title: 'Create your guest list', status: 'Pending' },
-  { category: '8-10 months', title: 'Book your venue', status: 'Pending' },
-  { category: '6-8 months', title: 'Choose wedding suppliers', status: 'Pending' },
+  { id: 'budget', category: '12+ months', title: 'Set your wedding budget', due: 'Before 12+ months', cost: '£0', status: 'Done' },
+  { id: 'guest-list', category: '10-12 months', title: 'Create your guest list', due: 'Before 10-12 months', cost: '£0', status: 'Pending' },
+  { id: 'venue', category: '8-10 months', title: 'Book your venue', due: 'Before 8-10 months', cost: '£2,500', status: 'Pending' },
+  { id: 'suppliers', category: '6-8 months', title: 'Choose wedding suppliers', due: 'Before 6-8 months', cost: '£1,200', status: 'Pending' },
 ];
 
 export const guestRows = [
