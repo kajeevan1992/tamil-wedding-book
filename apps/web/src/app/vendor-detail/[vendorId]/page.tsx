@@ -1,5 +1,5 @@
-import { LegacyClientPage } from '@/components/migration/LegacyClientPage';
+import PublicDetailPageClient from '@/legacy/components/layout/PublicDetailPageClient';
 
 export default function Page() {
-  return <LegacyClientPage route="/vendor-detail/:vendorId" legacyComponent="@views/VendorDetail" />;
+  return <PublicDetailPageClient />;
 }
