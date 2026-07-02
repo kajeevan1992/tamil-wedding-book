@@ -1,8 +1,18 @@
 export const coupleProfile = {
   fullName: 'Kajee Kj',
   partnerName: 'Partner Name',
+  email: 'kajee@example.com',
+  phone: '+44 7000 000000',
   weddingDate: '24th of March, 2027',
+  weddingDateValue: '2027-03-24',
   weddingLocation: 'London, United Kingdom',
+  venueName: 'Grand Tamil Wedding Venue',
+  weddingStartTime: '10:00',
+  weddingEndTime: '16:00',
+  brideSide: 'Bride family',
+  groomSide: 'Groom family',
+  primaryColour: '#d3df9e',
+  secondaryColour: '#eb2327',
   themeColor: 'rgb(211, 223, 158)',
 };
 
