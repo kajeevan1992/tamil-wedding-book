@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useState } from 'react';
 import {
   coupleProfile,
   coupleStats,
@@ -36,13 +37,122 @@ function DashboardBanner() {
   );
 }
 
-function AccountSidebar() {
-  return <><h3 className="mb-3 fw-600">Settings</h3><ul className="nav flex-column couple-account"><li className="nav-item"><Link href="/couple/account" className="nav-link">User Information</Link></li><li className="nav-item"><Link href="/couple/account/settings" className="nav-link">Account Settings</Link></li><li className="nav-item"><Link href="/couple/account/notifications" className="nav-link">Notifications</Link></li></ul></>;
+function AccountSidebar({ active = 'information' }) {
+  const links = [
+    { key: 'information', href: '/couple/account', label: 'User Information' },
+    { key: 'settings', href: '/couple/account/settings', label: 'Account Settings' },
+    { key: 'notifications', href: '/couple/account/notifications', label: 'Notifications' },
+  ];
+
+  return (
+    <>
+      <h3 className="mb-3 fw-600">Settings</h3>
+      <ul className="nav flex-column couple-account">
+        {links.map((link) => (
+          <li className="nav-item" key={link.key}>
+            <Link href={link.href} className={`nav-link${active === link.key ? ' active' : ''}`}>{link.label}</Link>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
+function ProfileField({ label, name, value, type = 'text', editing, onChange }) {
+  return (
+    <div className="col-md-6 mb-3">
+      <label className="form-label small text-muted mb-1">{label}</label>
+      <input className="form-control" type={type} name={name} value={value || ''} onChange={onChange} disabled={!editing} />
+    </div>
+  );
+}
+
+function ColourSwatch({ label, value }) {
+  return (
+    <div className="d-flex align-items-center mr-4 mb-2">
+      <span className="rounded-circle border mr-2" style={{ width: 22, height: 22, backgroundColor: value }}></span>
+      <small className="text-muted">{label}</small>
+    </div>
+  );
+}
+
+function AccountInformationPage() {
+  const [savedProfile, setSavedProfile] = useState(coupleProfile);
+  const [draftProfile, setDraftProfile] = useState(coupleProfile);
+  const [editing, setEditing] = useState(false);
+
+  const changeDraft = (event) => {
+    const { name, value } = event.target;
+    setDraftProfile((current) => ({ ...current, [name]: value }));
+  };
+
+  const saveDraft = () => {
+    setSavedProfile(draftProfile);
+    setEditing(false);
+  };
+
+  const cancelDraft = () => {
+    setDraftProfile(savedProfile);
+    setEditing(false);
+  };
+
+  return (
+    <div>
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h3 className="mb-0">User Information</h3>
+        {!editing && <button type="button" className="btn btn-primary btn-sm" onClick={() => setEditing(true)}>Edit</button>}
+      </div>
+      <div className="card custom-card">
+        <div className="card-body">
+          <div className="d-flex align-items-center mb-4">
+            <div className="avatar-alias size-avatar-xmedium avatar-center mr-3">
+              <span className="avatar-initials">{savedProfile.fullName.charAt(0)}{savedProfile.partnerName.charAt(0)}</span>
+            </div>
+            <div>
+              <h5 className="mb-1">{savedProfile.fullName} & {savedProfile.partnerName}</h5>
+              <small className="text-muted">{savedProfile.email}</small>
+            </div>
+          </div>
+          <form>
+            <div className="row">
+              <ProfileField label="Name and surname" name="fullName" value={draftProfile.fullName} editing={editing} onChange={changeDraft} />
+              <ProfileField label="Partner name" name="partnerName" value={draftProfile.partnerName} editing={editing} onChange={changeDraft} />
+              <ProfileField label="Email" name="email" value={draftProfile.email} type="email" editing={editing} onChange={changeDraft} />
+              <ProfileField label="Phone" name="phone" value={draftProfile.phone} editing={editing} onChange={changeDraft} />
+            </div>
+            <hr />
+            <h5 className="mb-3">Wedding Details</h5>
+            <div className="row">
+              <ProfileField label="Wedding date" name="weddingDateValue" value={draftProfile.weddingDateValue} type="date" editing={editing} onChange={changeDraft} />
+              <ProfileField label="Wedding location" name="weddingLocation" value={draftProfile.weddingLocation} editing={editing} onChange={changeDraft} />
+              <ProfileField label="Venue" name="venueName" value={draftProfile.venueName} editing={editing} onChange={changeDraft} />
+              <ProfileField label="Wedding start time" name="weddingStartTime" value={draftProfile.weddingStartTime} type="time" editing={editing} onChange={changeDraft} />
+              <ProfileField label="Wedding end time" name="weddingEndTime" value={draftProfile.weddingEndTime} type="time" editing={editing} onChange={changeDraft} />
+              <ProfileField label="Bride side" name="brideSide" value={draftProfile.brideSide} editing={editing} onChange={changeDraft} />
+              <ProfileField label="Groom side" name="groomSide" value={draftProfile.groomSide} editing={editing} onChange={changeDraft} />
+            </div>
+            <div className="d-flex flex-wrap mt-2">
+              <ColourSwatch label="Primary colour" value={draftProfile.primaryColour} />
+              <ColourSwatch label="Secondary colour" value={draftProfile.secondaryColour} />
+            </div>
+            {editing && (
+              <div className="mt-4">
+                <button type="button" className="btn btn-primary btn-sm mr-2" onClick={saveDraft}>Save Changes</button>
+                <button type="button" className="btn btn-link btn-sm text-danger" onClick={cancelDraft}>Cancel</button>
+              </div>
+            )}
+          </form>
+          <small className="text-muted d-block mt-3">Temporary frontend preview only. Changes are not saved to your real account yet.</small>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function AccountPage({ tab }) {
+  const activeTab = tab === 'settings' ? 'settings' : tab === 'notifications' ? 'notifications' : 'information';
   return (
-    <div className="container spacer"><div className="row"><div className="col-md-3"><AccountSidebar /></div><div className="col-md-9"><h3>{tab === 'settings' ? 'Settings' : tab === 'notifications' ? 'Notifications' : 'Settings'}</h3>{tab === 'notifications' ? <ul className="list-group mt-4">{notifications.map((item) => <li className="list-group-item" key={item}>{item}</li>)}</ul> : <form className="mt-4"><div className="row"><div className="col-md-6 mb-3"><input className="form-control" placeholder="Name and surname" defaultValue={coupleProfile.fullName} /></div><div className="col-md-6 mb-3"><input className="form-control" placeholder="Partner name" defaultValue={coupleProfile.partnerName} /></div><div className="col-md-6 mb-3"><input className="form-control" type="date" /></div><div className="col-md-6 mb-3"><input className="form-control" placeholder="Wedding location" defaultValue={coupleProfile.weddingLocation} /></div></div><button type="button" className="btn btn-primary btn-sm">Save Changes</button></form>}</div></div></div>
+    <div className="container spacer"><div className="row"><div className="col-md-3"><AccountSidebar active={activeTab} /></div><div className="col-md-9">{tab === 'notifications' ? <><h3>Notifications</h3><ul className="list-group mt-4">{notifications.map((item) => <li className="list-group-item" key={item}>{item}</li>)}</ul></> : tab === 'settings' ? <><h3>Settings</h3><form className="mt-4"><div className="row"><div className="col-md-6 mb-3"><input className="form-control" placeholder="Name and surname" defaultValue={coupleProfile.fullName} /></div><div className="col-md-6 mb-3"><input className="form-control" placeholder="Partner name" defaultValue={coupleProfile.partnerName} /></div><div className="col-md-6 mb-3"><input className="form-control" type="date" defaultValue={coupleProfile.weddingDateValue} /></div><div className="col-md-6 mb-3"><input className="form-control" placeholder="Wedding location" defaultValue={coupleProfile.weddingLocation} /></div></div><button type="button" className="btn btn-primary btn-sm">Save Changes</button></form></> : <AccountInformationPage />}</div></div></div>
   );
 }
 
