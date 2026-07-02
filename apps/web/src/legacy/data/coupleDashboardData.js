@@ -221,3 +221,28 @@ export const seatingChartFallbackData = {
     },
   ],
 };
+
+export const coupleVendorFallbackData = {
+  categories: [
+    { name: 'Wedding Venues', slug: 'venue', type: 'venue', icon: 'bi bi-house' },
+    { name: 'Photography', slug: 'photography', type: 'supplier', icon: 'bi bi-camera' },
+    { name: 'Catering', slug: 'catering', type: 'supplier', icon: 'bi bi-cup-hot' },
+    { name: 'Decor', slug: 'decor', type: 'supplier', icon: 'bi bi-flower1' },
+    { name: 'Music', slug: 'music', type: 'supplier', icon: 'bi bi-music-note-beamed' },
+    { name: 'Makeup', slug: 'makeup', type: 'supplier', icon: 'bi bi-brush' },
+  ],
+  suppliers: [
+    { id: 1, status: 'Hired', note: 'Confirmed deposit and menu tasting.', activeTab: '', coupleVendor: { id: 101, rating: 4.8, reviews: 24, category: { name: 'Wedding Venues', slug: 'venue', type: 'venue' }, user: { fullName: 'Grand Tamil Wedding Venue', address: 'London, United Kingdom', photo: '/assets/images/placeholder.png', mobile: '+44 7000 100001', email: 'venue@example.com' } } },
+    { id: 2, status: 'Preselection', note: '', activeTab: '', coupleVendor: { id: 102, rating: 4.6, reviews: 18, category: { name: 'Photography', slug: 'photography', type: 'supplier' }, user: { fullName: 'Tamil Wedding Photography', address: 'Harrow, United Kingdom', photo: '/assets/images/placeholder.png', mobile: '+44 7000 100002', email: 'photo@example.com' } } },
+    { id: 3, status: 'Negotiation', note: '', activeTab: '', coupleVendor: { id: 103, rating: 4.7, reviews: 31, category: { name: 'Decor', slug: 'decor', type: 'supplier' }, user: { fullName: 'Elegant Florist Studio', address: 'Ilford, United Kingdom', photo: '/assets/images/placeholder.png', mobile: '+44 7000 100003', email: 'decor@example.com' } } },
+    { id: 4, status: 'Evaluating', note: '', activeTab: '', coupleVendor: { id: 104, rating: 4.5, reviews: 12, category: { name: 'Catering', slug: 'catering', type: 'supplier' }, user: { fullName: 'South Indian Catering Co', address: 'Croydon, United Kingdom', photo: '/assets/images/placeholder.png', mobile: '+44 7000 100004', email: 'catering@example.com' } } },
+  ],
+  availableVendors: [
+    { fullName: 'Grand Tamil Wedding Venue', address: 'London, United Kingdom', photo: '/assets/images/placeholder.png', mobile: '+44 7000 100001', email: 'venue@example.com', rating: 4.8, reviews: 24, category: { name: 'Wedding Venues', slug: 'venue', type: 'venue' }, vendor: { id: 101 } },
+    { fullName: 'Tamil Wedding Photography', address: 'Harrow, United Kingdom', photo: '/assets/images/placeholder.png', mobile: '+44 7000 100002', email: 'photo@example.com', rating: 4.6, reviews: 18, category: { name: 'Photography', slug: 'photography', type: 'supplier' }, vendor: { id: 102 } },
+    { fullName: 'Elegant Florist Studio', address: 'Ilford, United Kingdom', photo: '/assets/images/placeholder.png', mobile: '+44 7000 100003', email: 'decor@example.com', rating: 4.7, reviews: 31, category: { name: 'Decor', slug: 'decor', type: 'supplier' }, vendor: { id: 103 } },
+    { fullName: 'South Indian Catering Co', address: 'Croydon, United Kingdom', photo: '/assets/images/placeholder.png', mobile: '+44 7000 100004', email: 'catering@example.com', rating: 4.5, reviews: 12, category: { name: 'Catering', slug: 'catering', type: 'supplier' }, vendor: { id: 104 } },
+    { fullName: 'DJ Tamil Beats', address: 'Wembley, United Kingdom', photo: '/assets/images/placeholder.png', mobile: '+44 7000 100005', email: 'dj@example.com', rating: 4.4, reviews: 9, category: { name: 'Music', slug: 'music', type: 'supplier' }, vendor: { id: 105 } },
+    { fullName: 'Bridal Makeup by Nila', address: 'London, United Kingdom', photo: '/assets/images/placeholder.png', mobile: '+44 7000 100006', email: 'makeup@example.com', rating: 4.9, reviews: 16, category: { name: 'Makeup', slug: 'makeup', type: 'supplier' }, vendor: { id: 106 } },
+  ],
+};
