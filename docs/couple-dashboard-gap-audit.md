@@ -338,29 +338,32 @@ This audit compares the migrated Next.js files against these legacy source areas
 
 ### `/couple/budget-planner/[id]`
 
-**Estimated completion: 12%**
+**Estimated completion: 50% after Milestone 3F-3**
 
 **Migrated correctly**
-- Dynamic route is wired.
-- Basic category view reuses budget cards.
+- Dynamic route is wired and reads the category id from the URL.
+- Category detail pages render the legacy-style category header, expense table headings, editable expense rows and expandable payment rows from fallback data.
+- Expense add/edit/delete, payment add/edit and paid/pending toggles work with local React state only.
+- Category totals recalculate from fallback expense/payment data.
 
 **Missing visually**
-- Legacy category page has `CategoryHeader`, inline expense rows, payment dropdowns, notes modal and expense payment modal.
+- Exact extracted legacy component boundaries for `CategoryHeader`, `Category`, note modal and payment modal are not fully split out yet.
+- Note modal editing and exact PDF/chart output remain deferred.
 
 **Missing functionally**
-- No selected category from URL.
-- No expense add/edit/delete.
-- No payment add/edit/delete.
-- No note modal.
-- No totals by category.
+- No backend selected-category loading.
+- No persisted expense add/edit/delete.
+- No persisted payment add/edit/delete or paid status.
+- No note modal persistence.
 
 **Static/fallback only**
-- Entire category content.
+- Category, expense, payment rows and totals are fallback data.
+- Every category-detail edit remains frontend-only local state.
 
 **Frontend interaction only needed next**
-- Local selected category routing.
-- Expense/payment modal shells.
-- Local calculations.
+- Split category detail into legacy-named helper components if more parity is requested.
+- Add exact note modal behaviour.
+- Polish exact payment modal layout once backend data shape is connected.
 
 **Backend/API later**
 - Budget category/expense/payment endpoints.
